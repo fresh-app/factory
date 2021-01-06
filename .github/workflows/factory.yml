@@ -8,6 +8,7 @@ jobs:
     strategy:
       matrix:
         generator:
+          - fresh-next-app
           - fresh-react-app
           - fresh-react-app-typescript
           - fresh-vite-app-react-ts
