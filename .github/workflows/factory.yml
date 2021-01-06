@@ -23,10 +23,11 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 14.x
-
-    - run: node run ${{ matrix.generator }}
-    - name: Some Git wizardry
-      run: |
-        bash sync.sh
+    - run: yarn
+    - run: node run ${{ github.event.inputs.generator }}
+    - run: node provision ${{ github.event.inputs.generator }}
+      env:
+        GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
+    - run: bash sync.sh
       env:
         GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
