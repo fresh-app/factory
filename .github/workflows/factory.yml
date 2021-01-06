@@ -29,7 +29,4 @@ jobs:
       run: |
         bash sync.sh
       env:
-        GIT_COMMITTER_NAME: dtinth-bot
-        GIT_AUTHOR_NAME: dtinth-bot
         GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
-        EMAIL: dtinth-bot@users.noreply.github.com
