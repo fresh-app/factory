@@ -1,0 +1,33 @@
+name: Factory (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      generator:
+        description: 'The generator to run'
+        required: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Obtain a GitHub App Installation Access Token
+      id: githubAppAuth
+      run: |
+        TOKEN="$(npx obtain-github-app-installation-access-token ci ${{ secrets.GH_APP_CREDENTIALS_TOKEN }})"
+        echo "::add-mask::$TOKEN"
+        echo "::set-output name=token::$TOKEN"
+
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - run: node run ${{ github.event.inputs.generator }}
+    - name: Some Git wizardry
+      run: |
+        bash sync.sh
+      env:
+        : dtinth-bot
+        GIT_AUTHOR_NAME: dtinth-bot
+        GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
+        EMAIL: dtinth-bot@users.noreply.github.com

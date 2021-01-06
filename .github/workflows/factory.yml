@@ -1,0 +1,35 @@
+name: Factory
+on:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        generator:
+          - fresh-react-app
+          - fresh-react-app-typescript
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Obtain a GitHub App Installation Access Token
+      id: githubAppAuth
+      run: |
+        TOKEN="$(npx obtain-github-app-installation-access-token ci ${{ secrets.GH_APP_CREDENTIALS_TOKEN }})"
+        echo "::add-mask::$TOKEN"
+        echo "::set-output name=token::$TOKEN"
+
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - run: node run ${{ matrix.generator }}
+    - name: Some Git wizardry
+      run: |
+        bash sync.sh
+      env:
+        GIT_COMMITTER_NAME: dtinth-bot
+        GIT_AUTHOR_NAME: dtinth-bot
+        GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
+        EMAIL: dtinth-bot@users.noreply.github.com
