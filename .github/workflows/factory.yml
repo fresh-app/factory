@@ -10,6 +10,11 @@ jobs:
         generator:
           - fresh-react-app
           - fresh-react-app-typescript
+          - fresh-vite-app-react-ts
+          - fresh-vite-app-react
+          - fresh-vite-app-vue-ts
+          - fresh-vite-app-vue
+          - fresh-vite-app
     steps:
     - uses: actions/checkout@v1
 
