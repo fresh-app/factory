@@ -1,5 +1,6 @@
 name: Factory
 on:
+  workflow_dispatch: {}
   schedule:
     - cron: '0 0 * * *'
 jobs:
@@ -31,8 +32,8 @@ jobs:
       with:
         node-version: 14.x
     - run: yarn
-    - run: node run ${{ github.event.inputs.generator }}
-    - run: node provision ${{ github.event.inputs.generator }}
+    - run: node run ${{ matrix.generator }}
+    - run: node provision ${{ matrix.generator }}
       env:
         GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
     - run: bash sync.sh
