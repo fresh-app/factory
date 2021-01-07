@@ -14,6 +14,8 @@ jobs:
           - fresh-react-app
           - fresh-react-app-typescript
           - fresh-tsdx-lib
+          - fresh-tsdx-react-component
+          - fresh-tsdx-react-component-with-storybook
           - fresh-vite-app-react-ts
           - fresh-vite-app-react
           - fresh-vite-app-vue-ts
