@@ -12,6 +12,7 @@ jobs:
           - fresh-next-app-typescript
           - fresh-react-app
           - fresh-react-app-typescript
+          - fresh-tsdx-lib
           - fresh-vite-app-react-ts
           - fresh-vite-app-react
           - fresh-vite-app-vue-ts
