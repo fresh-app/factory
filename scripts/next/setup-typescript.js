@@ -12,3 +12,7 @@ require('child_process').execSync('touch tsconfig.json', {
 require('child_process').execSync('yarn build', {
   stdio: 'inherit'
 })
+
+require('child_process').execSync('rm -rf .next', {
+  stdio: 'inherit'
+})
