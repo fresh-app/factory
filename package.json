@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "axios": "^0.21.1",
-    "make-promises-safe": "^5.1.0"
+    "execa": "^5.0.0",
+    "make-promises-safe": "^5.1.0",
+    "shelljs": "^0.8.4"
   }
 }
