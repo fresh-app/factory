@@ -7,6 +7,7 @@ shell.exec('sudo apt install -y xvfb', { fatal: true })
 shell.mkdir('fresh-app')
 shell.cd('fresh-app')
 shell.exec('echo "{}" > package.json', { fatal: true })
+shell.exec('curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore > .gitignore', { fatal: true })
 shell.exec('yarn add --dev cypress', { fatal: true })
 generateCypressProject()
 
