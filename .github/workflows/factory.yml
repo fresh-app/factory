@@ -23,6 +23,8 @@ jobs:
           - fresh-vite-app-preact
           - fresh-vite-app-react-ts
           - fresh-vite-app-react
+          - fresh-vite-app-svelte-ts
+          - fresh-vite-app-svelte
           - fresh-vite-app-vue-ts
           - fresh-vite-app-vue
           - fresh-vite-app
