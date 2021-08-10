@@ -1,3 +1,7 @@
 = Fresh App Factory
 
 https://github.com/fresh-app/factory[Fresh App Factory] is a project that generates https://github.com/fresh-app[template repositories] for popular dependencies and keeps track of dependency sizes.
+
+== Available templates
+
+include::partial$projects.adoc[]
