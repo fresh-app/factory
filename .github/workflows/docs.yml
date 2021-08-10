@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: yarn
       - run: node update-docs
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
