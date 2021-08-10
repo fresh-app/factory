@@ -2,7 +2,7 @@ name: Factory
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,23 +24,23 @@ jobs:
           - fresh-vite-app
           - fresh-vite-app-ts
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    - name: Obtain a GitHub App Installation Access Token
-      id: githubAppAuth
-      run: |
-        TOKEN="$(npx obtain-github-app-installation-access-token ci ${{ secrets.GH_APP_CREDENTIALS_TOKEN }})"
-        echo "::add-mask::$TOKEN"
-        echo "::set-output name=token::$TOKEN"
+      - name: Obtain a GitHub App Installation Access Token
+        id: githubAppAuth
+        run: |
+          TOKEN="$(npx obtain-github-app-installation-access-token ci ${{ secrets.GH_APP_CREDENTIALS_TOKEN }})"
+          echo "::add-mask::$TOKEN"
+          echo "::set-output name=token::$TOKEN"
 
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
-    - run: yarn
-    - run: node run ${{ matrix.generator }}
-    - run: node provision ${{ matrix.generator }}
-      env:
-        GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
-    - run: bash sync.sh
-      env:
-        GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - run: yarn
+      - run: node run ${{ matrix.generator }}
+      - run: node provision ${{ matrix.generator }}
+        env:
+          GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
+      - run: bash sync.sh
+        env:
+          GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
