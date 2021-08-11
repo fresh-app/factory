@@ -1,6 +1,11 @@
 = Fresh App Factory
+:experimental:
 
-https://github.com/fresh-app/factory[Fresh App Factory] is a project that generates https://github.com/fresh-app[template repositories] for popular dependencies and keeps track of dependency sizes.
+https://github.com/fresh-app/factory[Fresh App Factory] is a project that generates https://github.com/fresh-app[template repositories] for popular project boilerplate generators.
+
+https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-template-repository[Template repositories] provides an easy way to start a new project. Rather than having to install extra npm packages just to create a new project, you just click btn:[Use this template] and clone the repository to your development environment. However, template repositories may become out-of-date. It may contain outdated dependencies.
+
+Fresh App Factory solves this by re-generating every template repository everyday. This ensures that the template repositories here are up-to-date, hence the name “Fresh.”
 
 == Available templates
 
