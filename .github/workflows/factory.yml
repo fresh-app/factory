@@ -30,6 +30,7 @@ jobs:
           - fresh-vite-app-vue
           - fresh-vite-app
           - fresh-vite-app-ts
+          - fresh-vscode-extension
     steps:
       - uses: actions/checkout@v1
 
