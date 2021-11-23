@@ -14,6 +14,7 @@ jobs:
           - fresh-next-app-typescript
           - fresh-react-app
           - fresh-react-app-typescript
+          - fresh-remix-app
           - fresh-rush-monorepo
           - fresh-tsdx-lib
           - fresh-tsdx-react-component
