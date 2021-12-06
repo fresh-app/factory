@@ -7,7 +7,10 @@ shell.exec('sudo apt install -y xvfb', { fatal: true })
 shell.mkdir('fresh-app')
 shell.cd('fresh-app')
 shell.exec('echo "{}" > package.json', { fatal: true })
-shell.exec('curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore > .gitignore', { fatal: true })
+shell.exec(
+  'curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore > .gitignore',
+  { fatal: true },
+)
 shell.exec('yarn add --dev cypress', { fatal: true })
 generateCypressProject()
 
@@ -18,8 +21,11 @@ async function generateCypressProject() {
     const deadline = Date.now() + 120e3
     const log = []
     while (Date.now() < deadline) {
-      const { stdout: files } = await execa('find . -path \'./cypress/*.spec.*\'', { shell: true })
-      const filesFound = files.split('\n').filter(x => x.trim()).length
+      const { stdout: files } = await execa(
+        "find . -path './cypress/*.spec.*'",
+        { shell: true },
+      )
+      const filesFound = files.split('\n').filter((x) => x.trim()).length
       log.push(filesFound)
       console.error('Found %d test files...', filesFound)
       if (log.length >= 3) {
@@ -30,11 +36,10 @@ async function generateCypressProject() {
           process.exit(0)
         }
       }
-      await new Promise(r => setTimeout(r, 1000))
+      await new Promise((r) => setTimeout(r, 1000))
     }
     throw new Error('Timed out waiting for Cypress project to be created')
   }
 
   checkForCypressProject()
 }
-
