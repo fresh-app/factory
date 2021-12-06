@@ -5,5 +5,8 @@
     "glob": "^7.1.7",
     "make-promises-safe": "^5.1.0",
     "shelljs": "^0.8.4"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1"
   }
 }
