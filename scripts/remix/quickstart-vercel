@@ -2,8 +2,12 @@
 
 set timeout 60
 spawn create-remix fresh-app
-expect "Vercel"
-send -- "\r"
+while 1 {
+  expect {
+    "  Vercel" { send -- "\033\[B" }
+    "❯ Vercel" { send -- "\r"; break }
+  }
+}
 expect "TypeScript"
 send -- "\r"
 expect "npm"
