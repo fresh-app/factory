@@ -1,0 +1,11 @@
+#!/usr/bin/env expect
+
+set timeout 60
+spawn create-remix fresh-app
+expect "Vercel"
+send -- "\r"
+expect "TypeScript"
+send -- "\r"
+expect "npm"
+send -- "n\r"
+expect "README"
