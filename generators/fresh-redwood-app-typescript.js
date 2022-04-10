@@ -1,5 +1,4 @@
 module.exports = {
-  command:
-    'yarn create redwood-app /tmp/fresh-app --typescript && mv /tmp/fresh-app fresh-app',
+  command: 'yarn create redwood-app fresh-app --typescript',
   description: 'Fresh Redwood app',
 }
