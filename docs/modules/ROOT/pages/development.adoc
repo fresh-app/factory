@@ -1,0 +1,14 @@
+```
+# Build docker image
+docker build -t factory-runner runner
+
+# Start Docker image
+docker start -i factory-runner-instance
+
+# Run an interactive shell
+docker exec -ti factory-runner-instance bash
+
+# Kill container & remove Docker image
+docker rm -f factory-runner-instance
+```
+
