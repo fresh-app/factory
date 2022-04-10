@@ -4,9 +4,11 @@
     "execa": "^5.0.0",
     "glob": "^7.1.7",
     "make-promises-safe": "^5.1.0",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.5"
   },
   "devDependencies": {
-    "prettier": "^2.5.1"
-  }
+    "prettier": "^2.5.1",
+    "typescript": "^4.6.3"
+  },
+  "packageManager": "yarn@3.2.0"
 }
