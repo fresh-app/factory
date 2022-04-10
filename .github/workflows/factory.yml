@@ -16,8 +16,8 @@ jobs:
           - fresh-next-app-typescript
           - fresh-react-app
           - fresh-react-app-typescript
-          # - fresh-redwood-app
-          # - fresh-redwood-app-typescript
+          - fresh-redwood-app
+          - fresh-redwood-app-typescript
           - fresh-remix-app
           - fresh-remix-app-vercel
           - fresh-rush-monorepo
