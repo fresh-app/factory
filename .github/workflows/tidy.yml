@@ -8,11 +8,10 @@ jobs:
     name: Ensure codebase is tidy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
       - uses: actions/checkout@v2
-      - run: yarn
       - run: yarn prettier --write .
       - run: git add --update
       - uses: dtinth/patch-generator-action@main
