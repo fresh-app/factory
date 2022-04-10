@@ -21,7 +21,7 @@ jobs:
 
       - uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
       - run: yarn
       - run: node run ${{ github.event.inputs.generator }}
       - run: node provision ${{ github.event.inputs.generator }}
