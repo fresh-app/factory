@@ -8,6 +8,7 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         generator:
           - fresh-cypress-project
