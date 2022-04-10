@@ -11,4 +11,4 @@ git remote add origin "https://x-access-token:$GH_PUSH_TOKEN@github.com/fresh-ap
 git fetch origin
 git reset --soft origin/main || echo "No existing branch"
 git add --all && git commit -m "$(cat ../tmp/message)" || echo "Nothing to commit"
-# git push origin HEAD:refs/heads/main
+git push origin HEAD:refs/heads/main
