@@ -13,7 +13,6 @@ require('child_process').execFileSync(
     'run',
     ...['--name', `factory-runner-instance`],
     ...['-v', `${process.cwd()}:/opt/factory:ro`],
-    ...['-v', `${process.cwd()}/workspace:/workspace`],
     ...['-i'],
     'factory-runner',
     ...['bash', '-ex'],
@@ -22,6 +21,11 @@ require('child_process').execFileSync(
     stdio: ['pipe', 'inherit', 'inherit'],
     input: config.command,
   },
+)
+
+require('child_process').execSync(
+  'docker cp factory-runner-instance/:workspace/fresh-app/ workspace/fresh-app/',
+  { stdio: 'inherit' },
 )
 
 require('fs').writeFileSync('workspace/tmp/project', process.argv[2])

@@ -50,6 +50,7 @@ jobs:
         with:
           node-version: 16.x
       - run: yarn node run ${{ matrix.generator }}
+      - run: yarn node run ${{ matrix.generator }}
       - run: yarn node provision ${{ matrix.generator }}
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
