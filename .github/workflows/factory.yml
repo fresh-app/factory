@@ -5,6 +5,7 @@ on:
     - cron: '0 0 * * *'
 jobs:
   build:
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     strategy:
       matrix:
