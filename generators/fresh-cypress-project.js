@@ -1,4 +1,4 @@
 module.exports = {
-  command: 'node scripts/cypress/create-project',
+  command: 'node /opt/factory/scripts/cypress/create-project',
   description: 'Fresh Cypress project',
 }

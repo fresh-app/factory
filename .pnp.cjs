@@ -38,7 +38,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["glob", "npm:7.1.7"],\
             ["make-promises-safe", "npm:5.1.0"],\
             ["prettier", "npm:2.5.1"],\
-            ["shelljs", "npm:0.8.4"],\
+            ["shelljs", "npm:0.8.5"],\
             ["typescript", "patch:typescript@npm%3A4.6.3#~builtin<compat/typescript>::version=4.6.3&hash=bda367"]\
           ],\
           "linkType": "SOFT"\
@@ -400,7 +400,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["glob", "npm:7.1.7"],\
             ["make-promises-safe", "npm:5.1.0"],\
             ["prettier", "npm:2.5.1"],\
-            ["shelljs", "npm:0.8.4"],\
+            ["shelljs", "npm:0.8.5"],\
             ["typescript", "patch:typescript@npm%3A4.6.3#~builtin<compat/typescript>::version=4.6.3&hash=bda367"]\
           ],\
           "linkType": "SOFT"\
@@ -426,10 +426,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["shelljs", [\
-        ["npm:0.8.4", {\
-          "packageLocation": "./.yarn/cache/shelljs-npm-0.8.4-e2890f4ce2-27f83206ef.zip/node_modules/shelljs/",\
+        ["npm:0.8.5", {\
+          "packageLocation": "./.yarn/cache/shelljs-npm-0.8.5-44be43f84a-7babc46f73.zip/node_modules/shelljs/",\
           "packageDependencies": [\
-            ["shelljs", "npm:0.8.4"],\
+            ["shelljs", "npm:0.8.5"],\
             ["glob", "npm:7.1.6"],\
             ["interpret", "npm:1.4.0"],\
             ["rechoir", "npm:0.6.2"]\

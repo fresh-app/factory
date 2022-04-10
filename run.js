@@ -14,6 +14,7 @@ require('child_process').execFileSync(
     ...['--name', `factory-runner-instance`],
     ...['-v', `${process.cwd()}:/opt/factory:ro`],
     ...['-i'],
+    ...['--ipc=host'],
     'factory-runner',
     ...['bash', '-ex'],
   ],

@@ -1,21 +1,28 @@
+require('../../.pnp.cjs').setup()
 require('make-promises-safe')
 
-const shell = require('shelljs')
 const execa = require('execa')
+const input = `
+mkdir fresh-app
+cd fresh-app
+echo "{}" > package.json
+curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore > .gitignore
+yarn add --dev cypress
+`
 
-shell.exec('sudo apt install -y xvfb', { fatal: true })
-shell.mkdir('fresh-app')
-shell.cd('fresh-app')
-shell.exec('echo "{}" > package.json', { fatal: true })
-shell.exec(
-  'curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore > .gitignore',
-  { fatal: true },
-)
-shell.exec('yarn add --dev cypress', { fatal: true })
+require('child_process').execSync('bash -ex', {
+  stdio: ['pipe', 'inherit', 'inherit'],
+  input,
+})
+process.chdir('/workspace/fresh-app')
+
 generateCypressProject()
 
 async function generateCypressProject() {
-  const cypress = execa('xvfb-run yarn cypress open', { shell: true })
+  const cypress = execa('xvfb-run yarn cypress open', {
+    shell: true,
+    stdio: ['ignore', 'inherit', 'inherit'],
+  })
 
   async function checkForCypressProject() {
     const deadline = Date.now() + 120e3
