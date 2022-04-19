@@ -24,3 +24,4 @@
 * *https://github.com/fresh-app/fresh-vite-app-vue[fresh-vite-app-vue]*
 * *https://github.com/fresh-app/fresh-vite-app[fresh-vite-app]*
 * *https://github.com/fresh-app/fresh-vscode-extension[fresh-vscode-extension]*
+* *https://github.com/fresh-app/fresh-yarn-pnp-project[fresh-yarn-pnp-project]*
