@@ -37,6 +37,7 @@ jobs:
           - fresh-vite-app
           - fresh-vite-app-ts
           - fresh-vscode-extension
+          - fresh-yarn-pnp-project
     steps:
       - uses: actions/checkout@v1
       - uses: docker/setup-buildx-action@v1
