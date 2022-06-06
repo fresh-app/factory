@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         generator:
-          - fresh-cypress-project
+          # - fresh-cypress-project
           - fresh-next-app
           - fresh-next-app-typescript
           - fresh-react-app
