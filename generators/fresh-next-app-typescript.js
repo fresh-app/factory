@@ -1,5 +1,4 @@
 module.exports = {
-  command:
-    'yarn create next-app fresh-app && node /opt/factory/scripts/next/setup-typescript',
+  command: 'yarn create next-app fresh-app --typescript',
   description: 'Fresh Next app',
 }
