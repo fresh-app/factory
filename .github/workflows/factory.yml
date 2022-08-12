@@ -21,6 +21,7 @@ jobs:
           - fresh-remix-app
           - fresh-remix-app-vercel
           - fresh-rush-monorepo
+          - fresh-t3-app
           - fresh-tsdx-lib
           - fresh-tsdx-react-component
           - fresh-tsdx-react-component-with-storybook
