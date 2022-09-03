@@ -3,7 +3,7 @@
 set timeout 60
 spawn yarn create svelte fresh-app
 expect "template"
-send -- "\033\[B\r"
+send -- "\r"
 expect "TypeScript"
 send -- "\033\[B\r"
 expect "ESLint"
