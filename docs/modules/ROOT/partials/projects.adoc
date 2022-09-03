@@ -9,6 +9,7 @@
 * *https://github.com/fresh-app/fresh-remix-app-vercel[fresh-remix-app-vercel]*
 * *https://github.com/fresh-app/fresh-remix-app[fresh-remix-app]*
 * *https://github.com/fresh-app/fresh-rush-monorepo[fresh-rush-monorepo]*
+* *https://github.com/fresh-app/fresh-sveltekit-app-typescript[fresh-sveltekit-app-typescript]*
 * *https://github.com/fresh-app/fresh-t3-app[fresh-t3-app]*
 * *https://github.com/fresh-app/fresh-tsdx-lib[fresh-tsdx-lib]*
 * *https://github.com/fresh-app/fresh-tsdx-react-component-with-storybook[fresh-tsdx-react-component-with-storybook]*
