@@ -2,6 +2,7 @@
 * *https://github.com/fresh-app/fresh-cypress-project[fresh-cypress-project]*
 * *https://github.com/fresh-app/fresh-next-app-typescript[fresh-next-app-typescript]*
 * *https://github.com/fresh-app/fresh-next-app[fresh-next-app]*
+* *https://github.com/fresh-app/fresh-playwright-project[fresh-playwright-project]*
 * *https://github.com/fresh-app/fresh-react-app-typescript[fresh-react-app-typescript]*
 * *https://github.com/fresh-app/fresh-react-app[fresh-react-app]*
 * *https://github.com/fresh-app/fresh-redwood-app-typescript[fresh-redwood-app-typescript]*
