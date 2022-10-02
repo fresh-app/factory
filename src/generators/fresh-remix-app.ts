@@ -16,4 +16,6 @@ export default defineGenerator({
   },
   repoDescriptionOverride:
     'Fresh Remix app, automatically generated everyday with "yarn create remix"',
+  frameworkUrl: 'https://remix.run/',
+  frameworkDocumentationUrl: 'https://remix.run/docs',
 })

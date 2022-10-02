@@ -8,6 +8,9 @@ export interface GeneratorInfo {
   description: string
   longDescription?: string
   repoDescriptionOverride?: string
+  frameworkUrl?: string
+  frameworkDocumentationUrl?: string
+  staticOutputDirectory?: string
 }
 
 export interface GeneratorScript {
@@ -16,6 +19,7 @@ export interface GeneratorScript {
 
 export interface GeneratorCommand {
   command: string
+  displayedCommand?: string
 }
 
 export type Generator = GeneratorInfo & (GeneratorScript | GeneratorCommand)

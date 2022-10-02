@@ -4,4 +4,6 @@ export default defineGenerator({
   command:
     'yarn create vite fresh-app --template=vanilla-ts && cd fresh-app && yarn',
   description: 'Fresh Vite app',
+  frameworkUrl: 'https://vitejs.dev/',
+  frameworkDocumentationUrl: 'https://vitejs.dev/guide/',
 })

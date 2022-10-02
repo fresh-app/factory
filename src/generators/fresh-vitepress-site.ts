@@ -14,4 +14,8 @@ export default defineGenerator({
   ].join('\n'),
   repoDescriptionOverride:
     'Fresh VitePress site, automatically generated everyday',
+  staticOutputDirectory: '.vitepress/dist',
+  frameworkUrl: 'https://vitepress.vuejs.org/',
+  frameworkDocumentationUrl:
+    'https://vitepress.vuejs.org/guide/getting-started',
 })
