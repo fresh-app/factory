@@ -1318,6 +1318,7 @@ __metadata:
     shelljs: ^0.8.5
     tsx: ^3.9.0
     typescript: ^4.8.4
+    xterm-addon-serialize: ^0.8.0
     xterm-headless: ^5.0.0
   languageName: unknown
   linkType: soft
@@ -1601,6 +1602,15 @@ __metadata:
   version: 1.0.2
   resolution: "wrappy@npm:1.0.2"
   checksum: 159da4805f7e84a3d003d8841557196034155008f817172d4e986bd591f74aa82aa7db55929a54222309e01079a65a92a9e6414da5a6aa4b01ee44a511ac3ee5
+  languageName: node
+  linkType: hard
+
+"xterm-addon-serialize@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "xterm-addon-serialize@npm:0.8.0"
+  peerDependencies:
+    xterm: ^5.0.0
+  checksum: e4d4bc740214e62e2cc1cc15849df93574d111dacb615e02483615aa3760d2daeb6a2b8efa31c3bd9852e481c0371ef5f6cd3b02e9870af50f69a6a0ec247598
   languageName: node
   linkType: hard
 

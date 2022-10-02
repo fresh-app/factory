@@ -60,6 +60,10 @@ class RunAction extends GeneratorAction {
   }
 
   protected async onExecute(): Promise<void> {
+    console.log('=> Prepare output folder')
+    await this.run(`rm -rf workspace/tmp`)
+    await this.run(`mkdir -p workspace/tmp`)
+
     console.log('=> Running generator', this.generator)
     const { default: generator } = (await import(
       `./generators/${this.generator}.ts`
@@ -70,7 +74,7 @@ class RunAction extends GeneratorAction {
       const child = spawn('bin/runner', [], {
         name: 'xterm-color',
         cols: 120,
-        rows: 30,
+        rows: 120,
       })
       const session = new TerminalSession(child)
       await session.waitForText('workspace$')
@@ -94,13 +98,16 @@ class RunAction extends GeneratorAction {
         'workspace/tmp/timing.json',
         JSON.stringify({ startTime, finishTime }),
       )
+      writeFileSync('workspace/tmp/terminal.log', session.serialize())
     }
 
-    console.log('=> Copying output from container')
-    await this.run(`rm -rf workspace/fresh-app/`)
-    await this.run(
-      `docker cp factory-runner-instance/:workspace/fresh-app/ workspace/fresh-app/`,
-    )
+    {
+      console.log('=> Copying output from container')
+      await this.run(`rm -rf workspace/fresh-app`)
+      await this.run(
+        `docker cp factory-runner-instance/:workspace/fresh-app/ workspace/fresh-app/`,
+      )
+    }
 
     console.log('=> Checking size of fresh-app')
     const size = parseInt(
@@ -114,43 +121,64 @@ class RunAction extends GeneratorAction {
     const sizeText = (size / 1e6).toFixed(1) + ' MB'
     console.log('Total size:', sizeText)
 
-    console.log('=> Generating commit message')
-    const commitMessage =
-      generator.description +
-      ' as of ' +
-      new Date(Date.now() - 86400e3).toISOString().split('T')[0] +
-      ` (disk usage: ${sizeText})`
-    writeFileSync('workspace/tmp/message', commitMessage)
-    console.log('Commit message:', commitMessage)
-
-    console.log('=> Generating repository info')
-    const repoInfo = {
-      description: getRepoDescription(generator),
+    {
+      console.log('=> Generating commit message')
+      const commitMessage =
+        generator.description +
+        ' as of ' +
+        new Date(Date.now() - 86400e3).toISOString().split('T')[0] +
+        ` (disk usage: ${sizeText})`
+      writeFileSync('workspace/tmp/message', commitMessage)
+      console.log('Commit message:', commitMessage)
     }
-    writeFileSync('workspace/tmp/project', this.generator)
-    writeFileSync('workspace/tmp/repo-info.json', JSON.stringify(repoInfo))
-    console.log('Repository info:', repoInfo)
 
-    console.log('=> Generating summary')
+    {
+      console.log('=> Generating repository info')
+      const repoInfo = {
+        description: getRepoDescription(generator),
+      }
+      writeFileSync('workspace/tmp/project', this.generator)
+      writeFileSync('workspace/tmp/repo-info.json', JSON.stringify(repoInfo))
+      console.log('Repository info:', repoInfo)
+    }
+
     const timingInfo = JSON.parse(
       readFileSync('workspace/tmp/timing.json', 'utf8'),
     )
-    const elapsed =
-      Date.parse(timingInfo.finishTime) - Date.parse(timingInfo.startTime)
-    const elapsedText = Math.round(elapsed / 1e3) + ' seconds'
-    const summary = [
-      `## ${this.generator}`,
-      '',
-      '| Item | Details |',
-      '| --- | --- |',
-      `| Started at | ${timingInfo.startTime} |`,
-      `| Finished at | ${timingInfo.finishTime} |`,
-      `| Elapsed | ${elapsedText} |`,
-      `| Size | ${sizeText} |`,
-    ].join('\n')
-    console.log(summary)
-    if (process.env.GITHUB_STEP_SUMMARY) {
-      writeFileSync(process.env.GITHUB_STEP_SUMMARY, summary)
+    {
+      console.log('=> Generating summary')
+      const elapsed =
+        Date.parse(timingInfo.finishTime) - Date.parse(timingInfo.startTime)
+      const elapsedText = Math.round(elapsed / 1e3) + ' seconds'
+      const summary = [
+        `## ${this.generator}`,
+        '',
+        '| Item | Details |',
+        '| --- | --- |',
+        `| Started at | ${timingInfo.startTime} |`,
+        `| Finished at | ${timingInfo.finishTime} |`,
+        `| Elapsed | ${elapsedText} |`,
+        `| Size | ${sizeText} |`,
+      ].join('\n')
+      console.log(summary)
+      if (process.env.GITHUB_STEP_SUMMARY) {
+        writeFileSync(process.env.GITHUB_STEP_SUMMARY, summary)
+      }
+    }
+
+    {
+      const log = readFileSync('workspace/tmp/terminal.log', 'utf8')
+      console.log('=> Generating result file')
+      const result = {
+        generator: this.generator,
+        size,
+        timing: timingInfo,
+        log,
+      }
+      writeFileSync(
+        'workspace/tmp/result.json',
+        JSON.stringify(result, null, 2),
+      )
     }
   }
 
