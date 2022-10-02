@@ -6,4 +6,6 @@ export default defineGenerator({
   description: 'Fresh library',
   repoDescriptionOverride:
     'Fresh TypeScript library built with TSDX, automatically generated everyday from its official generator script and template',
+  frameworkUrl: 'https://tsdx.io/',
+  frameworkDocumentationUrl: 'https://tsdx.io/',
 })

@@ -143,6 +143,9 @@ export class RunAction extends GeneratorAction {
         log,
         description: getRepoDescription(generator),
         buildUrl: process.env.BUILD_URL,
+        frameworkUrl: generator.frameworkUrl,
+        frameworkDocumentationUrl: generator.frameworkDocumentationUrl,
+        staticOutputDirectory: generator.staticOutputDirectory,
       }
       writeFileSync(
         'workspace/tmp/result.json',

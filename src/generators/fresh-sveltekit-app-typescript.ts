@@ -28,4 +28,6 @@ export default defineGenerator({
   },
   repoDescriptionOverride:
     'Fresh SvelteKit app with TypeScript, automatically generated everyday with "yarn create svelte"',
+  frameworkUrl: 'https://kit.svelte.dev/',
+  frameworkDocumentationUrl: 'https://kit.svelte.dev/docs',
 })

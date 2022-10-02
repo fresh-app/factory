@@ -44,10 +44,7 @@ const repoInfo = require('./workspace/tmp/repo-info.json')
   ensure('has_projects', false)
   ensure('has_wiki', false)
   ensure('is_template', true)
-  ensure(
-    'homepage',
-    `https://github.com/fresh-app/factory/blob/main/generators/${project}.js`,
-  )
+  ensure('homepage', `https://fresh-app.github.io/${project}.html`)
   if (Object.keys(changes).length > 0) {
     await axios.patch(
       `https://api.github.com/repos/fresh-app/${project}`,

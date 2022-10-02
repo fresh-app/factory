@@ -6,4 +6,7 @@ export default defineGenerator({
   description: 'Fresh VS Code extension',
   repoDescriptionOverride:
     'Fresh VS Code extension, automatically generated everyday with "yo code"',
+  frameworkUrl: 'https://code.visualstudio.com/api',
+  frameworkDocumentationUrl:
+    'https://code.visualstudio.com/api/get-started/your-first-extension',
 })

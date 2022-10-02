@@ -12,4 +12,6 @@ export default defineGenerator({
   ].join('\n'),
   repoDescriptionOverride:
     'Fresh Node.js project with Yarn PnP preconfigured with VSCode integrations for TypeScript, ESLint and Prettier, automatically generated everyday',
+  frameworkUrl: 'https://yarnpkg.com/',
+  frameworkDocumentationUrl: 'https://yarnpkg.com/getting-started',
 })

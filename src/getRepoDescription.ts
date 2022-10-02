@@ -6,9 +6,7 @@ export function getRepoDescription(generator: Generator): string {
   }
   const suffix =
     'command' in generator
-      ? ' with "' +
-        generator.command.replace(/ && cd fresh-app && yarn$/, '') +
-        '"'
+      ? ' with "' + (generator.displayedCommand || generator.command) + '"'
       : ''
   return (
     (generator.longDescription || generator.description) +

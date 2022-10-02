@@ -18,4 +18,6 @@ export default defineGenerator({
   },
   repoDescriptionOverride:
     'Fresh T3 app, automatically generated everyday with "yarn create t3-app"',
+  frameworkUrl: 'https://create.t3.gg/',
+  frameworkDocumentationUrl: 'https://github.com/t3-oss/create-t3-app#readme',
 })

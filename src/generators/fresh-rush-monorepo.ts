@@ -6,4 +6,6 @@ export default defineGenerator({
   description: 'Fresh monorepo',
   repoDescriptionOverride:
     'Fresh monorepo project, built with Rush, automatically generated everyday with "rush init"',
+  frameworkUrl: 'https://rushjs.io/',
+  frameworkDocumentationUrl: 'https://rushjs.io/pages/intro/welcome/',
 })
