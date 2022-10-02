@@ -14,6 +14,8 @@ export default defineGenerator({
     await t.send('')
     await t.waitForText('README')
     await t.waitForText('Done')
+    await t.send('cd fresh-app')
+    await t.waitForText('$')
     await t.send('yarn build')
     await t.waitForText('Done')
   },
