@@ -31,6 +31,14 @@ export class UploadResultAction extends CommandLineAction {
       ...(oldSha ? { sha: oldSha } : null),
       message: `Upload ${result.generator} result`,
       content: Buffer.from(JSON.stringify(result, null, 2)).toString('base64'),
+      author: {
+        name: 'dtinth-bot',
+        email: 'dtinth-bot@users.noreply.github.com',
+      },
+      committer: {
+        name: 'dtinth-bot',
+        email: 'dtinth-bot@users.noreply.github.com',
+      },
     })
   }
 }
