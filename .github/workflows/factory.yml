@@ -69,10 +69,10 @@ jobs:
       - run: yarn
       - run: bin/run ${{ matrix.generator }}
       - run: yarn node provision ${{ matrix.generator }}
-        if: '!github.event.inputs.dry-run'
+        if: 'github.event.inputs.dry-run != true'
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
       - run: bash sync.sh
-        if: '!github.event.inputs.dry-run'
+        if: 'github.event.inputs.dry-run != true'
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
