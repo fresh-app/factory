@@ -15,4 +15,5 @@ export default defineGenerator({
     'Fresh React component library built with TSDX, storybooks included, automatically generated everyday from its official generator script and template',
   frameworkUrl: 'https://tsdx.io/',
   frameworkDocumentationUrl: 'https://tsdx.io/',
+  staticOutputDirectory: 'storybook-static',
 })
