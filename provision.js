@@ -2,7 +2,7 @@ require('make-promises-safe')
 
 const axios = require('axios')
 const project = process.argv[2]
-const repoInfo = require('./workspace/tmp/repo.json')
+const repoInfo = require('./workspace/tmp/repo-info.json')
 
 ;(async () => {
   const axiosConfig = {
