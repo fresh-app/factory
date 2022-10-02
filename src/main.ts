@@ -124,6 +124,7 @@ class RunAction extends GeneratorAction {
     const repoInfo = {
       description: this.generator,
     }
+    writeFileSync('workspace/tmp/project', this.generator)
     writeFileSync('workspace/tmp/repo-info.json', JSON.stringify(repoInfo))
     console.log('Repository info:', repoInfo)
 
