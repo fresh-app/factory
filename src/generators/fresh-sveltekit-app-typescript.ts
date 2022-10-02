@@ -24,11 +24,18 @@ export default defineGenerator({
     await t.send('\x1b[C')
     await t.waitForText('ready')
     await t.waitForText('$')
-    await t.send('cd fresh-app && yarn')
+    await t.send('cd fresh-app')
+    await t.waitForText('$')
+    await t.send('yarn')
     await t.waitForText('Done')
+    await t.send('yarn build')
+    await t.waitForText('Done')
+    await t.waitForText('$')
   },
   repoDescriptionOverride:
     'Fresh SvelteKit app with TypeScript, automatically generated everyday with "yarn create svelte"',
   frameworkUrl: 'https://kit.svelte.dev/',
   frameworkDocumentationUrl: 'https://kit.svelte.dev/docs',
+  serverCommand: 'yarn preview',
+  serverPort: 4173,
 })
