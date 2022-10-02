@@ -134,7 +134,7 @@ export class RunAction extends GeneratorAction {
     }
 
     {
-      const log = readFileSync('workspace/tmp/terminal.log', 'utf8')
+      const log = readFileSync('workspace/tmp/terminal.log', 'utf8').split('\n')
       console.log('=> Generating result file')
       const result = {
         generator: this.generator,
