@@ -7,4 +7,5 @@ export default defineGenerator({
   description: 'Fresh Vue app',
   frameworkUrl: 'https://vitejs.dev/',
   frameworkDocumentationUrl: 'https://vitejs.dev/guide/',
+  staticOutputDirectory: 'dist',
 })

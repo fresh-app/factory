@@ -7,4 +7,5 @@ export default defineGenerator({
   displayedCommand: 'yarn create vite fresh-app --template=vanilla',
   frameworkUrl: 'https://vitejs.dev/',
   frameworkDocumentationUrl: 'https://vitejs.dev/guide/',
+  staticOutputDirectory: 'dist',
 })

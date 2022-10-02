@@ -1,0 +1,2 @@
+#!/bin/bash -ex
+docker start -ai factory-runner-instance
