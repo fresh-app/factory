@@ -34,6 +34,17 @@ export class TerminalSession {
       await new Promise((resolve) => setTimeout(resolve, 100))
     }
   }
+  async getText() {
+    let lastText = toText(this.displayTerminal)
+    for (;;) {
+      await new Promise((resolve) => setTimeout(resolve, 100))
+      const text = toText(this.displayTerminal)
+      if (text === lastText) {
+        return text
+      }
+      lastText = text
+    }
+  }
   async type(text: string) {
     this.expectationTerminal = this.createTerminal()
     this.child.write(text)

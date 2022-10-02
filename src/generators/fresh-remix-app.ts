@@ -1,7 +1,17 @@
 import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
-  command:
-    'npm i -g create-remix@latest && /opt/factory/scripts/remix/quickstart && cd fresh-app && yarn',
   description: 'Fresh Remix app',
+  script: async (t) => {
+    await t.send('exec yarn create remix fresh-app')
+    await t.waitForText('Just the basics')
+    await t.send('')
+    await t.waitForText('Remix App Server')
+    await t.send('')
+    await t.waitForText('TypeScript')
+    await t.send('')
+    await t.waitForText('install')
+    await t.send('')
+    await t.waitForText('README')
+  },
 })
