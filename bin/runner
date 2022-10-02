@@ -1,0 +1,13 @@
+#!/bin/bash -e
+docker rm -f factory-runner-instance >/dev/null 2>&1
+rm -rf workspace
+mkdir -p workspace/tmp
+exec docker run \
+  --name=factory-runner-instance \
+  -v "$PWD:/opt/factory:ro" \
+  -ti \
+  --ipc=host \
+  --hostname=factory \
+  --tmpfs=/tmp \
+  factory-runner \
+  bash -e

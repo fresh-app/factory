@@ -2,7 +2,7 @@ require('make-promises-safe')
 
 const axios = require('axios')
 const project = process.argv[2]
-const config = require('./generators/' + process.argv[2])
+const repoInfo = require('./workspace/tmp/repo-info.json')
 
 ;(async () => {
   const axiosConfig = {
@@ -39,7 +39,7 @@ const config = require('./generators/' + process.argv[2])
     }
   }
 
-  ensure('description', config.command)
+  ensure('description', repoInfo.description)
   ensure('has_issues', false)
   ensure('has_projects', false)
   ensure('has_wiki', false)

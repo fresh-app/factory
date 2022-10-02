@@ -1,14 +1,22 @@
 {
   "dependencies": {
+    "@rushstack/ts-command-line": "^4.12.4",
+    "@types/glob": "^8.0.0",
+    "@types/node": "^18.7.23",
     "axios": "^0.21.1",
     "execa": "^5.0.0",
     "glob": "^7.1.7",
     "make-promises-safe": "^5.1.0",
-    "shelljs": "^0.8.5"
+    "node-gyp": "^9.1.0",
+    "node-pty": "^0.10.1",
+    "prettier": "^2.7.1",
+    "shelljs": "^0.8.5",
+    "tsx": "^3.9.0",
+    "typescript": "^4.8.4",
+    "xterm-headless": "^5.0.0"
   },
-  "devDependencies": {
-    "prettier": "^2.5.1",
-    "typescript": "^4.6.3"
+  "scripts": {
+    "factory": "tsx src/main.ts"
   },
-  "packageManager": "yarn@3.2.0"
+  "packageManager": "yarn@3.2.3"
 }
