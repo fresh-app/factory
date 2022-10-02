@@ -8,6 +8,6 @@ export default defineGenerator({
     'yarn init -2',
     'yarn set version stable',
     'yarn add --dev typescript eslint prettier',
-    'yarn dlx @yarnpkg/sdks vscode'
-  ].join('\n')
+    'yarn dlx @yarnpkg/sdks vscode',
+  ].join('\n'),
 })
