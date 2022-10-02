@@ -5,6 +5,11 @@ on:
       generator:
         description: 'The generator to run'
         required: true
+      dry-run:
+        description: 'Dry run'
+        type: boolean
+        default: false
+        required: false
 jobs:
   build:
     timeout-minutes: 15
@@ -36,3 +41,4 @@ jobs:
       - run: bash sync.sh
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
+        if: '!github.event.inputs.dry-run'
