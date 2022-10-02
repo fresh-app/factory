@@ -41,4 +41,4 @@ jobs:
       - run: bash sync.sh
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
-        if: '!github.event.inputs.dry-run2'
+        if: '!github.event.inputs.dry-run'
