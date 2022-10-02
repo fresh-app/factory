@@ -60,10 +60,10 @@ class RunAction extends GeneratorAction {
     if ('script' in generator) {
       await generator.script(session)
     } else {
-      const bashCommand = `exec bash -c '${generator.command.replace(
+      const bashCommand = `bash -exc '${generator.command.replace(
         /'/g,
         "'\\''",
-      )}'`
+      )}' < /dev/null && exit`
       await session.send(bashCommand)
     }
     await session.waitForExit()

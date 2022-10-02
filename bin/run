@@ -1,0 +1,2 @@
+#!/bin/bash -e
+yarn factory run -g "$1"
