@@ -141,6 +141,7 @@ export class RunAction extends GeneratorAction {
         size,
         timing: timingInfo,
         log,
+        description: getRepoDescription(generator),
       }
       writeFileSync(
         'workspace/tmp/result.json',
