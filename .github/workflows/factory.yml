@@ -18,19 +18,21 @@ jobs:
       matrix:
         generator:
           - fresh-astro-project
-          - fresh-next-app
           - fresh-next-app-typescript
-          - fresh-react-app
+          - fresh-next-app
+          - fresh-playwright-project
           - fresh-react-app-typescript
-          - fresh-redwood-app
+          - fresh-react-app
           - fresh-redwood-app-typescript
-          - fresh-remix-app
+          - fresh-redwood-app
           - fresh-remix-app-vercel
+          - fresh-remix-app
           - fresh-rush-monorepo
+          - fresh-sveltekit-app-typescript
           - fresh-t3-app
           - fresh-tsdx-lib
-          - fresh-tsdx-react-component
           - fresh-tsdx-react-component-with-storybook
+          - fresh-tsdx-react-component
           - fresh-vite-app-lit-element-ts
           - fresh-vite-app-lit-element
           - fresh-vite-app-preact-ts
@@ -39,10 +41,11 @@ jobs:
           - fresh-vite-app-react
           - fresh-vite-app-svelte-ts
           - fresh-vite-app-svelte
+          - fresh-vite-app-ts
           - fresh-vite-app-vue-ts
           - fresh-vite-app-vue
           - fresh-vite-app
-          - fresh-vite-app-ts
+          - fresh-vitepress-site
           - fresh-vscode-extension
           - fresh-yarn-pnp-project
     steps:
