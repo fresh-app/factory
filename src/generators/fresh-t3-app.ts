@@ -3,7 +3,7 @@ import { defineGenerator } from '../defineGenerator'
 export default defineGenerator({
   description: 'Fresh T3 app',
   script: async (t) => {
-    await t.send('exec yarn create t3-app fresh-app')
+    await t.send('yarn create t3-app fresh-app')
     await t.waitForText('TypeScript')
     await t.send('')
     await t.waitForText('toggle all')
