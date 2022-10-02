@@ -9,10 +9,12 @@
     "make-promises-safe": "^5.1.0",
     "node-gyp": "^9.1.0",
     "node-pty": "^0.10.1",
+    "octokit": "^2.0.7",
     "prettier": "^2.7.1",
     "shelljs": "^0.8.5",
     "tsx": "^3.9.0",
     "typescript": "^4.8.4",
+    "xterm-addon-serialize": "^0.8.0",
     "xterm-headless": "^5.0.0"
   },
   "scripts": {

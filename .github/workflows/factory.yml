@@ -48,6 +48,8 @@ jobs:
           - fresh-vitepress-site
           - fresh-vscode-extension
           - fresh-yarn-pnp-project
+    env:
+      BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - uses: actions/checkout@v1
       - uses: docker/setup-buildx-action@v1
@@ -76,6 +78,10 @@ jobs:
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
       - run: bash sync.sh
+        if: '!inputs.dry-run'
+        env:
+          GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
+      - run: yarn factory upload-result
         if: '!inputs.dry-run'
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}

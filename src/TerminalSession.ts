@@ -1,11 +1,14 @@
 import { Terminal } from 'xterm-headless'
 import { IPty } from 'node-pty'
+import { SerializeAddon } from 'xterm-addon-serialize'
 
 export class TerminalSession {
   private exitPromise: Promise<number>
   private displayTerminal = this.createTerminal()
   private expectationTerminal = this.createTerminal()
+  private serializer = new SerializeAddon()
   constructor(private readonly child: IPty) {
+    this.displayTerminal.loadAddon(this.serializer)
     child.onData((data) => {
       process.stdout.write(data)
       this.displayTerminal.write(data)
@@ -22,7 +25,7 @@ export class TerminalSession {
     return new Terminal({
       allowProposedApi: true,
       cols: 120,
-      rows: 30,
+      rows: 120,
     })
   }
   async waitForText(text: string) {
@@ -57,6 +60,9 @@ export class TerminalSession {
   }
   async waitForExit() {
     return this.exitPromise
+  }
+  serialize() {
+    return this.serializer.serialize()
   }
 }
 function toText(terminal: Terminal) {
