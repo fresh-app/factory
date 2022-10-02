@@ -1,11 +1,11 @@
 ```
 # Build docker image
-docker build -t factory-runner runner
+bin/build
 
 # Run a factory
 bin/run fresh-vite-app
 
 # Run an interactive shell to inspect runner
-docker start -ai factory-runner-instance
+bin/inspect
 ```
 

@@ -10,7 +10,6 @@ export interface GeneratorInfo {
   repoDescriptionOverride?: string
   frameworkUrl?: string
   frameworkDocumentationUrl?: string
-  staticOutputDirectory?: string
 }
 
 export interface GeneratorScript {
@@ -22,4 +21,15 @@ export interface GeneratorCommand {
   displayedCommand?: string
 }
 
-export type Generator = GeneratorInfo & (GeneratorScript | GeneratorCommand)
+export interface GeneratorStaticOutput {
+  staticOutputDirectory: string
+}
+
+export interface GeneratorServer {
+  serverCommand: string
+  serverPort: number
+}
+
+export type Generator = GeneratorInfo &
+  (GeneratorScript | GeneratorCommand) &
+  (GeneratorServer | GeneratorStaticOutput | {})

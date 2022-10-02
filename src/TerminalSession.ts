@@ -7,6 +7,7 @@ export class TerminalSession {
   private displayTerminal = this.createTerminal()
   private expectationTerminal = this.createTerminal()
   private serializer = new SerializeAddon()
+  private exited = false
   constructor(private readonly child: IPty) {
     this.displayTerminal.loadAddon(this.serializer)
     child.onData((data) => {
@@ -16,8 +17,8 @@ export class TerminalSession {
     })
     this.exitPromise = new Promise((resolve) => {
       child.onExit((e) => {
-        console.log('Exit code:', e)
         resolve(e.exitCode)
+        this.exited = true
       })
     })
   }
@@ -33,6 +34,11 @@ export class TerminalSession {
       const output = toText(this.expectationTerminal)
       if (output.includes(text)) {
         return
+      }
+      if (this.exited) {
+        throw new Error(
+          `The generator exited before the text "${text}" was found`,
+        )
       }
       await new Promise((resolve) => setTimeout(resolve, 100))
     }

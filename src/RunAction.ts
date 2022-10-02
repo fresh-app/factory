@@ -27,16 +27,16 @@ export class RunAction extends GeneratorAction {
   }
 
   protected async onExecute(): Promise<void> {
-    console.log('=> Prepare output folder')
-    await this.run(`rm -rf workspace/tmp`)
-    await this.run(`mkdir -p workspace/tmp`)
-
     console.log('=> Running generator', this.generator)
     const { default: generator } = (await import(
       `./generators/${this.generator}.ts`
     )) as { default: Generator }
 
     if (!this._skipGenerator.value) {
+      console.log('=> Prepare output folder')
+      await this.run(`rm -rf workspace/tmp`)
+      await this.run(`mkdir -p workspace/tmp`)
+
       const startTime = new Date().toISOString()
       const child = spawn('bin/runner', [], {
         name: 'xterm-color',
@@ -48,13 +48,35 @@ export class RunAction extends GeneratorAction {
       if ('script' in generator) {
         await generator.script(session)
       } else {
-        const bashCommand = `bash -exc '${generator.command.replace(
-          /'/g,
-          "'\\''",
-        )}' < /dev/null && exit`
+        const completedMessage = 'Finished running generator.'
+        const escapedCommand = generator.command.replace(/'/g, "'\\''")
+        const bashCommand = `bash -exc '${escapedCommand}' < /dev/null; echo '${completedMessage}'`
         await session.send(bashCommand)
+        await session.waitForText(completedMessage)
       }
 
+      if (
+        'staticOutputDirectory' in generator ||
+        'serverCommand' in generator
+      ) {
+        const completedMessage = 'Finished taking screenshot.'
+        const cdTarget =
+          'staticOutputDirectory' in generator
+            ? '/workspace/fresh-app/' + generator.staticOutputDirectory
+            : '/workspace/fresh-app'
+        const serverCommand =
+          'serverCommand' in generator ? generator.serverCommand : 'http-server'
+        const serverPort =
+          'serverCommand' in generator ? generator.serverPort : 8080
+        await session.send(`cd ${cdTarget}`)
+        await session.waitForText('$')
+        await session.send(
+          `start-test '${serverCommand}' :${serverPort} 'playwright screenshot --viewport-size=1280,720 http://localhost:${serverPort} /workspace/screenshot.png' || true; echo '${completedMessage}'`,
+        )
+        await session.waitForText(completedMessage)
+      }
+
+      await session.send('exit')
       const exitCode = await session.waitForExit()
       if (exitCode !== 0) {
         throw new Error(`The generator exited with code ${exitCode}`)
@@ -73,6 +95,9 @@ export class RunAction extends GeneratorAction {
       await this.run(`rm -rf workspace/fresh-app`)
       await this.run(
         `docker cp factory-runner-instance/:workspace/fresh-app/ workspace/fresh-app/`,
+      )
+      await this.run(
+        `docker cp factory-runner-instance/:workspace/screenshot.png workspace/tmp/screenshot.png || echo 'No screenshot found.'`,
       )
     }
 
@@ -145,7 +170,6 @@ export class RunAction extends GeneratorAction {
         buildUrl: process.env.BUILD_URL,
         frameworkUrl: generator.frameworkUrl,
         frameworkDocumentationUrl: generator.frameworkDocumentationUrl,
-        staticOutputDirectory: generator.staticOutputDirectory,
       }
       writeFileSync(
         'workspace/tmp/result.json',

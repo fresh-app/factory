@@ -3,7 +3,7 @@ import { defineGenerator } from '../defineGenerator'
 export default defineGenerator({
   description: 'Fresh Remix app',
   script: async (t) => {
-    await t.send('exec yarn create remix fresh-app')
+    await t.send('yarn create remix fresh-app')
     await t.waitForText('Just the basics')
     await t.send('')
     await t.waitForText('Remix App Server')
@@ -13,6 +13,7 @@ export default defineGenerator({
     await t.waitForText('install')
     await t.send('')
     await t.waitForText('README')
+    await t.waitForText('Done')
   },
   repoDescriptionOverride:
     'Fresh Remix app, automatically generated everyday with "yarn create remix"',

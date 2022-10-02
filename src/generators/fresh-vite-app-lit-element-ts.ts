@@ -7,4 +7,5 @@ export default defineGenerator({
   description: 'Fresh Lit Element',
   frameworkUrl: 'https://vitejs.dev/',
   frameworkDocumentationUrl: 'https://vitejs.dev/guide/',
+  staticOutputDirectory: 'dist',
 })
