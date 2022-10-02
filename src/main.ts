@@ -9,6 +9,8 @@ import execa from 'execa'
 import { TerminalSession } from './TerminalSession'
 import { Generator } from './defineGenerator'
 import { readFileSync, writeFileSync } from 'fs'
+import glob from 'glob'
+import { basename } from 'path'
 
 class FreshAppFactoryCommandLine extends CommandLineParser {
   public constructor() {
@@ -17,6 +19,7 @@ class FreshAppFactoryCommandLine extends CommandLineParser {
       toolDescription: 'Fresh App Factory',
     })
     this.addAction(new RunAction())
+    this.addAction(new ListAction())
   }
   protected onDefineParameters(): void {}
 }
@@ -122,7 +125,7 @@ class RunAction extends GeneratorAction {
 
     console.log('=> Generating repository info')
     const repoInfo = {
-      description: this.generator,
+      description: getRepoDescription(generator),
     }
     writeFileSync('workspace/tmp/project', this.generator)
     writeFileSync('workspace/tmp/repo-info.json', JSON.stringify(repoInfo))
@@ -157,4 +160,43 @@ class RunAction extends GeneratorAction {
   }
 }
 
+class ListAction extends CommandLineAction {
+  public constructor() {
+    super({
+      actionName: 'list',
+      summary: 'List generators',
+      documentation: 'List all the generators',
+    })
+  }
+  protected onDefineParameters(): void {}
+  protected async onExecute(): Promise<void> {
+    const files = glob.sync('src/generators/*.ts')
+    for (const file of files.sort()) {
+      const name = basename(file, '.ts')
+      console.log(`${name.padEnd(48)} ${file}`)
+      const { default: generator } = (await import(
+        `./generators/${name}.ts`
+      )) as { default: Generator }
+      console.log('    ' + getRepoDescription(generator))
+    }
+  }
+}
+
 new FreshAppFactoryCommandLine().execute()
+
+function getRepoDescription(generator: Generator): string {
+  if (generator.repoDescriptionOverride) {
+    return generator.repoDescriptionOverride
+  }
+  const suffix =
+    'command' in generator
+      ? ' with "' +
+        generator.command.replace(/ && cd fresh-app && yarn$/, '') +
+        '"'
+      : ''
+  return (
+    (generator.longDescription || generator.description) +
+    ', automatically generated everyday' +
+    suffix
+  )
+}

@@ -1,7 +1,7 @@
 import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
-  description: 'Fresh Vite app',
+  description: 'Fresh T3 app',
   script: async (t) => {
     await t.send('exec yarn create t3-app fresh-app')
     await t.waitForText('TypeScript')
@@ -16,4 +16,6 @@ export default defineGenerator({
     await t.send('Y')
     await t.waitForText('Done')
   },
+  repoDescriptionOverride:
+    'Fresh T3 app, automatically generated everyday with "yarn create t3-app"',
 })

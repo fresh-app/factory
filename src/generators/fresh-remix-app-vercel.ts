@@ -22,4 +22,6 @@ export default defineGenerator({
     await t.send('')
     await t.waitForText('README')
   },
+  repoDescriptionOverride:
+    'Fresh Remix app preconfigured with Vercel deployment config, automatically generated everyday with "yarn create remix"',
 })

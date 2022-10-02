@@ -6,6 +6,8 @@ export function defineGenerator(g: Generator) {
 
 export interface GeneratorInfo {
   description: string
+  longDescription?: string
+  repoDescriptionOverride?: string
 }
 
 export interface GeneratorScript {

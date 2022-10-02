@@ -14,4 +14,6 @@ export default defineGenerator({
     await t.send('')
     await t.waitForText('README')
   },
+  repoDescriptionOverride:
+    'Fresh Remix app, automatically generated everyday with "yarn create remix"',
 })
