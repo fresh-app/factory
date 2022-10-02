@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@rushstack/ts-command-line": "^4.12.4",
+    "@types/glob": "^8.0.0",
     "@types/node": "^18.7.23",
     "axios": "^0.21.1",
     "execa": "^5.0.0",
