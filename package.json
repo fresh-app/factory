@@ -9,6 +9,7 @@
     "make-promises-safe": "^5.1.0",
     "node-gyp": "^9.1.0",
     "node-pty": "^0.10.1",
+    "octokit": "^2.0.7",
     "prettier": "^2.7.1",
     "shelljs": "^0.8.5",
     "tsx": "^3.9.0",

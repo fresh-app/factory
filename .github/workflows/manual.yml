@@ -44,3 +44,7 @@ jobs:
         if: '!inputs.dry-run'
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
+      - run: yarn factory upload-result
+        if: '!inputs.dry-run'
+        env:
+          GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
