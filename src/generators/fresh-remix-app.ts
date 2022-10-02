@@ -14,9 +14,13 @@ export default defineGenerator({
     await t.send('')
     await t.waitForText('README')
     await t.waitForText('Done')
+    await t.send('yarn build')
+    await t.waitForText('Done')
   },
   repoDescriptionOverride:
     'Fresh Remix app, automatically generated everyday with "yarn create remix"',
   frameworkUrl: 'https://remix.run/',
   frameworkDocumentationUrl: 'https://remix.run/docs',
+  serverCommand: 'yarn start',
+  serverPort: 3000,
 })

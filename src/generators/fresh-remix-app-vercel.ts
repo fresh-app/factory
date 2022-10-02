@@ -27,4 +27,6 @@ export default defineGenerator({
     'Fresh Remix app preconfigured with Vercel deployment config, automatically generated everyday with "yarn create remix"',
   frameworkUrl: 'https://remix.run/',
   frameworkDocumentationUrl: 'https://remix.run/docs',
+  serverCommand: 'yarn dev',
+  serverPort: 3000,
 })

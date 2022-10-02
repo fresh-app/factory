@@ -71,7 +71,7 @@ export class RunAction extends GeneratorAction {
         await session.send(`cd ${cdTarget}`)
         await session.waitForText('$')
         await session.send(
-          `start-test '${serverCommand}' :${serverPort} 'playwright screenshot --viewport-size=1280,720 http://localhost:${serverPort} /workspace/screenshot.png' || true; echo '${completedMessage}'`,
+          `/opt/factory/bin/screenshot '${serverCommand}' ${serverPort} || true; echo '${completedMessage}'`,
         )
         await session.waitForText(completedMessage)
       }
