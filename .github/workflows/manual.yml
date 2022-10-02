@@ -34,7 +34,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 16.x
-      - run: yarn node run ${{ github.event.inputs.generator }}
+      - run: yarn
+      - run: bin/run ${{ github.event.inputs.generator }}
       - run: yarn node provision ${{ github.event.inputs.generator }}
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}

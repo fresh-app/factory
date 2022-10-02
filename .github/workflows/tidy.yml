@@ -12,6 +12,7 @@ jobs:
         with:
           node-version: 16.x
       - uses: actions/checkout@v2
+      - run: yarn
       - run: yarn prettier --write .
       - run: git add --update
       - uses: dtinth/patch-generator-action@main
