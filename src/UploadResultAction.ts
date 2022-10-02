@@ -18,7 +18,11 @@ export class UploadResultAction extends CommandLineAction {
       throw new Error('GH_PUSH_TOKEN is not set')
     }
     const octokit = new Octokit({ auth: process.env.GH_PUSH_TOKEN })
-    const updateFile = async (path: string, contents: Buffer) => {
+    const updateFile = async (
+      path: string,
+      contents: Buffer,
+      message: string,
+    ) => {
       const newSha = createHash('sha1').update(contents).digest('hex')
       const ptr = {
         owner: 'fresh-app',
@@ -36,7 +40,7 @@ export class UploadResultAction extends CommandLineAction {
       await octokit.rest.repos.createOrUpdateFileContents({
         ...ptr,
         ...(oldSha ? { sha: oldSha } : null),
-        message: `Upload ${result.generator} result`,
+        message,
         content: contents.toString('base64'),
         author: {
           name: 'dtinth-bot',
@@ -51,11 +55,13 @@ export class UploadResultAction extends CommandLineAction {
     await updateFile(
       result.generator + '.json',
       Buffer.from(JSON.stringify(result, null, 2)),
+      `Upload ${result.generator} result`,
     )
     if (existsSync('workspace/tmp/screenshot.png')) {
       await updateFile(
         result.generator + '.png',
         readFileSync('workspace/tmp/screenshot.png'),
+        `Upload ${result.generator} screenshot`,
       )
     }
   }
