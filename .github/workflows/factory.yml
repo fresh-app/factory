@@ -28,6 +28,7 @@ jobs:
           - fresh-remix-app-vercel
           - fresh-remix-app
           - fresh-rush-monorepo
+          - fresh-solid-app-ts
           - fresh-sveltekit-app-typescript
           - fresh-t3-app
           - fresh-tsdx-lib
