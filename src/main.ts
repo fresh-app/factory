@@ -120,6 +120,13 @@ class RunAction extends GeneratorAction {
     writeFileSync('workspace/tmp/message', commitMessage)
     console.log('Commit message:', commitMessage)
 
+    console.log('=> Generating repository info')
+    const repoInfo = {
+      description: this.generator,
+    }
+    writeFileSync('workspace/tmp/repo-info.json', JSON.stringify(repoInfo))
+    console.log('Repository info:', repoInfo)
+
     console.log('=> Generating summary')
     const timingInfo = JSON.parse(
       readFileSync('workspace/tmp/timing.json', 'utf8'),
