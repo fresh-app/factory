@@ -1,14 +1,27 @@
-# factory
+# Fresh App Factory
 
-This repository generates various fresh apps every midnight (UTC time).
+**[Fresh App Factory](https://fresh-app.github.io/)** automatically generates template repositories from popular open-source app frameworks.
+
+[![](https://github.com/dtinth/timelapse/raw/master/projects/fresh-app-factory_home.png)](https://fresh-app.github.io)
 
 ## Why?
 
-Instead of having to run a script to generate a new project each time, you can just fork the templates and begin coding.
+This project aims to make it easier for developers to get started with new app frameworks. To understand how, let’s compare the different approaches:
 
-- Use [Codespaces](https://github.com/codespaces), [Gitpod](https://gitpod.io/) or [CodeSandbox](https://codesandbox.io/) to work on the project right away.
+<!-- prettier-ignore-start -->
 
-- Unlike many boilerplates, our fresh apps are regenerated **daily**, so you get up-to-date dependencies by the time you clone them.
+| Approach | Pros and cons |
+| ----- | ----- |
+| **Manually-maintained repos** | <ul><li>➕ Can easily create a new repo by clicking on “Use this template” button.<li>➕ Can easily be used with tools like [Codesandbox][], [Gitpod][], or [Stackblitz][].<li>➖ Can easily become out-of-date<li>➖ Maintainers may forgot to mark repository as a template repository.</ul> |
+| **Folder in monorepo** | <ul><li>➕ Easier for maintainers to keep up-to-date.<li>➕ Can easily be used with tools like [Codesandbox][], [Gitpod][], or [Stackblitz][].<li>➖ Cannot use the “Use this template” button.<li>➖ Requires an extra step to copy a subdirectory into a new repo.</ul> |
+| **Generator CLIs** | <ul><li>➕ Can support a lot of combinations.<li>➕ Gives you an up-to-date app.<li>➖ Requires installing an extra CLI tool, whose installation process may be slow.<li>➖ Cannot easily use with [Codesandbox][], [Gitpod][], or [Stackblitz][].<li>➖ Cannot use the “Use this template” button.</ul> |
+| **Fresh App Factory** | <ul><li>➕ Up-to-date as the templates are generated from generator CLIs daily.<li>➕ Can easily create a new repo by clicking on “Use this template” button.<li>➕ Can easily be used with tools like [Codesandbox][], [Gitpod][], or [Stackblitz][].<li>➖ Supports only a few configurations.</ul> |
+
+<!-- prettier-ignore-end -->
+
+[codesandbox]: https://codesandbox.io/
+[gitpod]: https://www.gitpod.io/
+[stackblitz]: https://stackblitz.com/
 
 For more information, check out the [project documention page](https://docs.dt.in.th/fresh-app-factory/index.html).
 
