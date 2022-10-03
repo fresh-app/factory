@@ -28,7 +28,6 @@ export class ListAction extends CommandLineAction {
       const generators: any[] = []
       for (const file of files.sort()) {
         const name = basename(file, '.ts')
-        console.log(`${name.padEnd(48)} ${file}`)
         const generator = await this.loadGenerator(name)
         const description = getRepoDescription(generator)
         generators.push({ name, description, info: generator })
