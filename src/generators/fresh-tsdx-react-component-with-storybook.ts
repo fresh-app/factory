@@ -10,9 +10,10 @@ export default defineGenerator({
     'yarn build',
     'yarn build-storybook',
   ].join('\n'),
+  displayedCommand: 'npx tsdx create --template=react-with-storybook',
   description: 'Fresh React component',
-  repoDescriptionOverride:
-    'Fresh React component library built with TSDX, storybooks included, automatically generated everyday from its official generator script and template',
+  longDescription:
+    'Fresh React component library, built with TSDX, storybooks included',
   frameworkUrl: 'https://tsdx.io/',
   frameworkDocumentationUrl: 'https://tsdx.io/',
   staticOutputDirectory: 'storybook-static',

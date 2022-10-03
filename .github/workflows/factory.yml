@@ -34,6 +34,7 @@ jobs:
           - fresh-tsdx-lib
           - fresh-tsdx-react-component-with-storybook
           - fresh-tsdx-react-component
+          - fresh-turbo-monorepo
           - fresh-vite-app-lit-element-ts
           - fresh-vite-app-lit-element
           - fresh-vite-app-preact-ts

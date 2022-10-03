@@ -6,10 +6,10 @@ export default defineGenerator({
     'cd fresh-app',
     'yarn build',
   ].join('\n'),
+  displayedCommand: 'yarn create astro --template basics',
   description: 'Fresh Astro project',
+  longDescription: 'Fresh Astro project, with TypeScript',
   frameworkUrl: 'https://astro.build/',
   frameworkDocumentationUrl: 'https://docs.astro.build/en/getting-started/',
-  repoDescriptionOverride:
-    'Fresh Astro website project, with TypeScript, automatically generated everyday with "yarn create astro --template basics"',
   staticOutputDirectory: 'dist',
 })

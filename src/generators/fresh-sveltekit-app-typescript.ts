@@ -2,6 +2,7 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   description: 'Fresh SvelteKit app',
+  longDescription: 'Fresh SvelteKit app, with TypeScript',
   script: async (t) => {
     await t.send('yarn create svelte fresh-app')
     await t.waitForText('template')
@@ -32,8 +33,7 @@ export default defineGenerator({
     await t.waitForText('Done')
     await t.waitForText('$')
   },
-  repoDescriptionOverride:
-    'Fresh SvelteKit app with TypeScript, automatically generated everyday with "yarn create svelte"',
+  displayedCommand: 'yarn create svelte',
   frameworkUrl: 'https://kit.svelte.dev/',
   frameworkDocumentationUrl: 'https://kit.svelte.dev/docs',
   serverCommand: 'yarn preview',

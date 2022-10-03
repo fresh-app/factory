@@ -6,7 +6,7 @@ export default defineGenerator({
     'cd fresh-app',
     'yarn build',
   ].join('\n'),
-  displayedCommand: 'yarn create next-app fresh-app --typescript',
+  displayedCommand: 'yarn create next-app --typescript',
   description: 'Fresh Next app',
   frameworkUrl: 'https://nextjs.org/',
   frameworkDocumentationUrl: 'https://nextjs.org/docs',

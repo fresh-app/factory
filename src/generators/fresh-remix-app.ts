@@ -2,6 +2,7 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   description: 'Fresh Remix app',
+  longDescription: 'Fresh Remix app, with TypeScript',
   script: async (t) => {
     await t.send('yarn create remix fresh-app')
     await t.waitForText('Just the basics')
@@ -19,8 +20,7 @@ export default defineGenerator({
     await t.send('yarn build')
     await t.waitForText('Done')
   },
-  repoDescriptionOverride:
-    'Fresh Remix app, automatically generated everyday with "yarn create remix"',
+  displayedCommand: 'yarn create remix',
   frameworkUrl: 'https://remix.run/',
   frameworkDocumentationUrl: 'https://remix.run/docs',
   serverCommand: 'yarn start',

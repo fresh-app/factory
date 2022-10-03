@@ -7,7 +7,7 @@ export function defineGenerator(g: Generator) {
 export interface GeneratorInfo {
   description: string
   longDescription?: string
-  repoDescriptionOverride?: string
+  displayedCommand?: string
   frameworkUrl?: string
   frameworkDocumentationUrl?: string
 }
@@ -18,7 +18,6 @@ export interface GeneratorScript {
 
 export interface GeneratorCommand {
   command: string
-  displayedCommand?: string
 }
 
 export interface GeneratorStaticOutput {
