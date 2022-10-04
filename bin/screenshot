@@ -6,4 +6,4 @@ if [ ! -d "/ms-playwright/" ]; then
 fi
 
 set -x
-start-test "$1" :"$2" "cd /workspace && playwright screenshot --viewport-size=1280,720 http://localhost:$2 /workspace/screenshot.png"
+start-test "$1" :"$2" "cd /workspace && (playwright screenshot --viewport-size=1280,720 http://localhost:$2 /workspace/screenshot.png; playwright screenshot --viewport-size=1280,720 http://localhost:$2 /workspace/screenshot.png)"
