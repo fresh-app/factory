@@ -18,8 +18,6 @@ export default defineGenerator({
     await t.waitForText('$')
     await t.send('cd fresh-app')
     await t.waitForText('$')
-    await t.send('cp .env .env.example')
-    await t.waitForText('$')
   },
   displayedCommand: 'yarn create t3-app',
   frameworkUrl: 'https://create.t3.gg/',
