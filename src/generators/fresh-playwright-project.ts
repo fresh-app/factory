@@ -2,7 +2,7 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   command: [
-    'yarn create playwright fresh-app --quiet --lang=TypeScript --gha --no-browsers',
+    'yarn create playwright fresh-app --quiet --lang=TypeScript --gha',
     'cd fresh-app',
     'yarn playwright test',
   ].join('\n'),
