@@ -49,6 +49,7 @@ jobs:
           - fresh-vite-app
           - fresh-vitepress-site
           - fresh-vscode-extension
+          - fresh-vscode-web-extension
           - fresh-yarn-pnp-project
     env:
       BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
