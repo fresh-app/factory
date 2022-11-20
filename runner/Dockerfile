@@ -5,3 +5,5 @@ WORKDIR /workspace
 RUN chown -R pwuser:pwuser /workspace /usr/local /usr/lib/node_modules && chmod a+w /usr/bin
 USER pwuser
 RUN npm install -g playwright-core@1.26.0 start-server-and-test http-server
+RUN corepack enable
+RUN corepack prepare pnpm@latest --activate

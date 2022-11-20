@@ -2,11 +2,11 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   command: [
-    'yarn create astro fresh-app --template basics --install --git=false --typescript=strict',
+    'pnpm create astro fresh-app --template basics --install --git=false --typescript=strict',
     'cd fresh-app',
-    'yarn build',
+    'pnpm run build',
   ].join('\n'),
-  displayedCommand: 'yarn create astro --template basics',
+  displayedCommand: 'pnpm create astro --template basics',
   description: 'Fresh Astro project',
   longDescription: 'Fresh Astro project, with TypeScript',
   frameworkUrl: 'https://astro.build/',

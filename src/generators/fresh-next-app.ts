@@ -2,14 +2,14 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   command: [
-    'yarn create next-app fresh-app',
+    'pnpm create next-app fresh-app',
     'cd fresh-app',
-    'yarn build',
+    'pnpm run build',
   ].join('\n'),
-  displayedCommand: 'yarn create next-app',
+  displayedCommand: 'pnpm create next-app',
   description: 'Fresh Next app',
   frameworkUrl: 'https://nextjs.org/',
   frameworkDocumentationUrl: 'https://nextjs.org/docs',
-  serverCommand: 'yarn start',
+  serverCommand: 'pnpm start',
   serverPort: 3000,
 })
