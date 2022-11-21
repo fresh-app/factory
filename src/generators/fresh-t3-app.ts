@@ -12,7 +12,7 @@ export default defineGenerator({
     await t.send('')
     await t.waitForText('repo')
     await t.send('n')
-    await t.waitForText('install')
+    await t.waitForText('run')
     await t.send('Y')
     await t.waitForText('Done')
     await t.waitForText('$')

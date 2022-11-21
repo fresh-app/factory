@@ -23,6 +23,26 @@ This project aims to make it easier for developers to get started with new app f
 [gitpod]: https://www.gitpod.io/
 [stackblitz]: https://stackblitz.com/
 
-For more information, check out the [project documention page](https://docs.dt.in.th/fresh-app-factory/index.html).
+## Development
 
-[![Project documention page](https://ss.dt.in.th/api/screenshots/docs-fresh-app-factory__index.png)](https://docs.dt.in.th/fresh-app-factory/index.html)
+### Prerequisites
+
+- Node.js and Yarn
+- Docker
+
+### Setup
+
+```sh
+# Install dependencies
+yarn
+
+# Build docker image
+bin/build
+
+# Run a generator
+# Tip: when opening a generator in VS Code, you can press Cmd+Shift+B to run it
+bin/run fresh-vite-app
+
+# Run an interactive shell to inspect runner state
+bin/inspect
+```
