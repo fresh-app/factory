@@ -1,5 +1,5 @@
 name: Factory (manual)
-run-name: ${{ input.generator }}${{ input.dry-run && ' (dry-run)' || '' }}
+run-name: ${{ inputs.generator }}${{ inputs.dry-run && ' (dry-run)' || '' }}
 on:
   workflow_dispatch:
     inputs:

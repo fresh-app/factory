@@ -45,4 +45,7 @@ bin/run fresh-vite-app
 
 # Run an interactive shell to inspect runner state
 bin/inspect
+
+# Run the factory on GitHub Actions
+gh --repo fresh-app/factory workflow run manual.yml -f generator=fresh-vite-app
 ```
