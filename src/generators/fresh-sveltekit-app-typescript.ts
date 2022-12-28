@@ -23,6 +23,8 @@ export default defineGenerator({
     await t.send('\x1b[C')
     await t.waitForText('Playwright')
     await t.send('\x1b[C')
+    await t.waitForText('Vitest')
+    await t.send('\x1b[C')
     await t.waitForText('ready')
     await t.waitForText('$')
     await t.send('cd fresh-app')
