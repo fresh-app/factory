@@ -73,7 +73,7 @@ export class RunAction extends GeneratorAction {
         await session.send(
           `/opt/factory/bin/screenshot '${serverCommand}' ${serverPort} || true; echo '${completedMessage}'`,
         )
-        await session.waitForText(completedMessage)
+        await session.waitForText(completedMessage, 240e3)
       }
 
       await session.send('exit')
