@@ -20,5 +20,8 @@
   "scripts": {
     "factory": "tsx src/main.ts"
   },
-  "packageManager": "yarn@3.2.3"
+  "packageManager": "yarn@3.2.3",
+  "engines": {
+    "node": "16.x"
+  }
 }

@@ -29,16 +29,37 @@ export class TerminalSession {
       rows: 120,
     })
   }
-  async waitForText(text: string) {
+  async waitForText(text: string, timeout = 600e3) {
+    const started = Date.now()
+    const printError = (error: Error, output: string) => {
+      console.error('Error:', error.message)
+      console.error('Output:')
+      console.log(
+        JSON.stringify(
+          output.split('\n').filter((line) => line.trim()),
+          null,
+          2,
+        ),
+      )
+    }
     for (;;) {
       const output = toText(this.expectationTerminal)
       if (output.includes(text)) {
         return
       }
       if (this.exited) {
-        throw new Error(
+        const error = new Error(
           `The generator exited before the text "${text}" was found`,
         )
+        printError(error, output)
+        throw error
+      }
+      if (Date.now() - started > timeout) {
+        const error = new Error(
+          `Timeout waiting for the text "${text}" to be found in the output (timeout: ${timeout}ms)`,
+        )
+        printError(error, output)
+        throw error
       }
       await new Promise((resolve) => setTimeout(resolve, 100))
     }

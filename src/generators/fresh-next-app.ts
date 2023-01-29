@@ -2,7 +2,7 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   command: [
-    'yarn create next-app fresh-app --typescript=false --eslint',
+    'yarn create next-app fresh-app --eslint --src-dir --typescript=false --no-experimental-app --import-alias="@/*"',
     'cd fresh-app',
     'yarn build',
   ].join('\n'),
