@@ -18,6 +18,7 @@ jobs:
       matrix:
         generator:
           - fresh-astro-project
+          - fresh-bun-project
           - fresh-next-app-typescript
           - fresh-next-app
           - fresh-playwright-project
