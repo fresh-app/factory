@@ -1563,12 +1563,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nan@npm:^2.14.0":
-  version: 2.16.0
-  resolution: "nan@npm:2.16.0"
+"nan@npm:^2.17.0":
+  version: 2.17.0
+  resolution: "nan@npm:2.17.0"
   dependencies:
     node-gyp: latest
-  checksum: cb16937273ea55b01ea47df244094c12297ce6b29b36e845d349f1f7c268b8d7c5abd126a102c5678a1e1afd0d36bba35ea0cc959e364928ce60561c9306064a
+  checksum: ec609aeaf7e68b76592a3ba96b372aa7f5df5b056c1e37410b0f1deefbab5a57a922061e2c5b369bae9c7c6b5e6eecf4ad2dac8833a1a7d3a751e0a7c7f849ed
   languageName: node
   linkType: hard
 
@@ -1613,12 +1613,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-pty@npm:^0.10.1":
-  version: 0.10.1
-  resolution: "node-pty@npm:0.10.1"
+"node-pty@npm:0.11.0-beta29":
+  version: 0.11.0-beta29
+  resolution: "node-pty@npm:0.11.0-beta29"
   dependencies:
-    nan: ^2.14.0
-  checksum: c136904deafa172a19a3cc02e053e24f3271330062cf10307689e24d2469bba623ba20ee53d22538dbfb6c147b1530a2e6309acb1a261d5d7d35b5417aa91e0d
+    nan: ^2.17.0
+    node-gyp: latest
+  checksum: f60056103ed0d7fc28a5e271b5b2bfc3bd30cf8556b0282daf56c045889e95d21e4bb4f7fe0df6cce0de49ad51e2faf3859c59dc5e9b800f9ece8d6cd3645b97
   languageName: node
   linkType: hard
 
@@ -1814,7 +1815,7 @@ __metadata:
     glob: ^7.1.7
     make-promises-safe: ^5.1.0
     node-gyp: ^9.1.0
-    node-pty: ^0.10.1
+    node-pty: 0.11.0-beta29
     octokit: ^2.0.7
     prettier: ^2.7.1
     shelljs: ^0.8.5
