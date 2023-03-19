@@ -10,22 +10,16 @@ export default defineGenerator({
     await t.waitForText('TypeScript')
     for (;;) {
       const text = await t.getText()
-      if (text.includes('❯   Yes, using TypeScript syntax')) {
+      if (text.includes('● Yes, using TypeScript syntax')) {
         break
       } else {
         await t.type('\x1b[B')
       }
     }
     await t.send('')
-    await t.waitForText('ESLint')
-    await t.send('\x1b[C')
-    await t.waitForText('Prettier')
-    await t.send('\x1b[C')
-    await t.waitForText('Playwright')
-    await t.send('\x1b[C')
-    await t.waitForText('Vitest')
-    await t.send('\x1b[C')
-    await t.waitForText('ready')
+    await t.waitForText('additional options')
+    await t.send('a')
+    await t.waitForText('Done')
     await t.waitForText('$')
     await t.send('cd fresh-app')
     await t.waitForText('$')
