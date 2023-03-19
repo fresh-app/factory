@@ -15,6 +15,7 @@ export interface GeneratorInfo {
   description: string
   longDescription?: string
   displayedCommand?: string
+  deprecationNotice?: string
 
   /** @deprecated - Use `framework` property instead */
   frameworkUrl?: string

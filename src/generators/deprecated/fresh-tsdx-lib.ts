@@ -1,4 +1,4 @@
-import { defineGenerator } from '../defineGenerator'
+import { defineGenerator } from '../../defineGenerator'
 
 export default defineGenerator({
   description: 'Fresh library',

@@ -24,17 +24,12 @@ jobs:
           - fresh-playwright-project
           - fresh-react-app-typescript
           - fresh-react-app
-          - fresh-redwood-app-typescript
-          - fresh-redwood-app
           - fresh-remix-app-vercel
           - fresh-remix-app
           - fresh-rush-monorepo
           - fresh-solid-app-ts
           - fresh-sveltekit-app-typescript
           - fresh-t3-app
-          - fresh-tsdx-lib
-          - fresh-tsdx-react-component-with-storybook
-          - fresh-tsdx-react-component
           - fresh-turbo-monorepo
           - fresh-vite-app-lit-element-ts
           - fresh-vite-app-lit-element
@@ -52,6 +47,18 @@ jobs:
           - fresh-vscode-extension
           - fresh-vscode-web-extension
           - fresh-yarn-pnp-project
+
+          # Removed from the factory on 2023-03-19 because the generator script fails very often.
+          # - fresh-redwood-app-typescript
+          # - fresh-redwood-app
+
+          # Removed from the factory on 2021-03-19 because the generator script fails on
+          # recent Node.js versions and the generator is not maintained anymore
+          # (no updates since 2020-10-13).
+          # See: https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported)
+          # - fresh-tsdx-lib
+          # - fresh-tsdx-react-component-with-storybook
+          # - fresh-tsdx-react-component
     env:
       BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
