@@ -66,7 +66,7 @@ jobs:
     env:
       BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - uses: docker/setup-buildx-action@v1
       - uses: docker/build-push-action@v2
         with:
@@ -82,11 +82,11 @@ jobs:
           TOKEN="$(npx obtain-github-app-installation-access-token ci ${{ secrets.GH_APP_CREDENTIALS_TOKEN }})"
           echo "::add-mask::$TOKEN"
           echo "::set-output name=token::$TOKEN"
-
-      - uses: actions/setup-node@v1
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16.x
-      - run: yarn
+          cache: 'pnpm'
+      - run: pnpm install
       - run: bin/run ${{ matrix.generator }}
       - run: yarn node provision ${{ matrix.generator }}
         if: '!inputs.dry-run'

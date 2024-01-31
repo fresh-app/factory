@@ -5,6 +5,7 @@ exec docker run \
   -v "$PWD:/opt/factory:ro" \
   -ti \
   --ipc=host \
+  --network=host \
   --hostname=factory \
   --tmpfs=/tmp \
   factory-runner \

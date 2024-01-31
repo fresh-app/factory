@@ -34,12 +34,13 @@ jobs:
           echo "::add-mask::$TOKEN"
           echo "::set-output name=token::$TOKEN"
 
-      - uses: actions/setup-node@v1
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16.x
-      - run: yarn
+          cache: 'pnpm'
+      - run: pnpm install
       - run: bin/run ${{ github.event.inputs.generator }}
-      - run: yarn node provision ${{ github.event.inputs.generator }}
+      - run: node provision ${{ github.event.inputs.generator }}
         if: '!inputs.dry-run'
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
@@ -47,7 +48,7 @@ jobs:
         if: '!inputs.dry-run'
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
-      - run: yarn factory upload-result
+      - run: pnpm factory upload-result
         if: '!inputs.dry-run'
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
