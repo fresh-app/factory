@@ -4,6 +4,28 @@ export function defineGenerator(g: Generator) {
   return g
 }
 
+export function vite(
+  template: string,
+): Pick<
+  Generator,
+  'displayedCommand' | 'frameworkUrl' | 'frameworkDocumentationUrl'
+> &
+  GeneratorCommand &
+  GeneratorStaticOutput {
+  return {
+    command: [
+      `pnpm create vite fresh-app --template=${template}`,
+      'cd fresh-app',
+      'corepack use pnpm@latest',
+      'pnpm build',
+    ].join('\n'),
+    displayedCommand: `pnpm create vite --template=${template}`,
+    frameworkUrl: 'https://vitejs.dev/',
+    frameworkDocumentationUrl: 'https://vitejs.dev/guide/',
+    staticOutputDirectory: 'dist',
+  }
+}
+
 interface IconDarkLight {
   /** File name to use when in dark mode */
   dark: string

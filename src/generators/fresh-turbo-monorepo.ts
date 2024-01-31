@@ -2,12 +2,12 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   command: [
-    'npm install -g pnpm',
-    'pnpx create-turbo fresh-app --use-pnpm',
+    'pnpm create turbo fresh-app --package-manager pnpm --skip-install',
     'cd fresh-app',
-    'pnpm run build',
+    'corepack use pnpm@latest',
+    'pnpm build',
   ].join('\n'),
-  displayedCommand: 'pnpx create-turbo --use-pnpm',
+  displayedCommand: 'pnpm create turbo --package-manager pnpm',
   description: 'Fresh monorepo',
   longDescription: 'Fresh monorepo, built with Turborepo',
   frameworkUrl: 'https://turborepo.org/',

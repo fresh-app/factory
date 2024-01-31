@@ -11,6 +11,6 @@ export default defineGenerator({
   description: 'Fresh Next app',
   frameworkUrl: 'https://nextjs.org/',
   frameworkDocumentationUrl: 'https://nextjs.org/docs',
-  serverCommand: 'yarn start',
+  serverCommand: 'pnpm start',
   serverPort: 3000,
 })

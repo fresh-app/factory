@@ -1,5 +1,6 @@
-FROM node:20-alpine
-RUN apk add --no-cache jq unzip bash curl git
+FROM node:20-bookworm
+RUN apt-get update && apt-get install -y bash curl git jq sudo unzip
+RUN echo 'node ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 RUN corepack enable
 RUN corepack install --global pnpm@latest
 ENV PATH="/pnpm-bin:${PATH}"

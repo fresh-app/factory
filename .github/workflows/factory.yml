@@ -24,7 +24,6 @@ jobs:
           - fresh-playwright-project
           - fresh-react-app-typescript
           - fresh-react-app
-          - fresh-remix-app-vercel
           - fresh-remix-app
           - fresh-solid-app-ts
           - fresh-sveltekit-app-typescript
@@ -45,6 +44,9 @@ jobs:
           - fresh-vitepress-site
           - fresh-vscode-extension
           - fresh-vscode-web-extension
+
+          # Removed from the factory on 2024-01-31 due Remix no longer has a special Vercel config in their setup wizard.
+          # - fresh-remix-app-vercel
 
           # Removed from the factory on 2024-01-31 due to lack of maintenance from my side (I have since switched to using pnpm).
           # - fresh-yarn-pnp-project
