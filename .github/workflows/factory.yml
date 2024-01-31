@@ -19,6 +19,7 @@ jobs:
         generator:
           - fresh-astro-project
           - fresh-bun-project
+          - fresh-docusaurus-site
           - fresh-next-app-typescript
           - fresh-next-app
           - fresh-playwright-project
