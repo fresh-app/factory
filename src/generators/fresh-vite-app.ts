@@ -1,6 +1,6 @@
-import { defineGenerator, vite } from '../defineGenerator'
+import { defineGenerator, viteStatic } from '../defineGenerator'
 
 export default defineGenerator({
-  ...vite('vanilla'),
+  ...viteStatic('vanilla'),
   description: 'Fresh Vite app',
 })

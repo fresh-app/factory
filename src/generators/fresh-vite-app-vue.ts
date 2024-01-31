@@ -1,6 +1,6 @@
-import { defineGenerator, vite } from '../defineGenerator'
+import { defineGenerator, viteStatic } from '../defineGenerator'
 
 export default defineGenerator({
-  ...vite('vue'),
+  ...viteStatic('vue'),
   description: 'Fresh Vue app',
 })

@@ -10,8 +10,7 @@ export function vite(
   Generator,
   'displayedCommand' | 'frameworkUrl' | 'frameworkDocumentationUrl'
 > &
-  GeneratorCommand &
-  GeneratorStaticOutput {
+  GeneratorCommand {
   return {
     command: [
       `pnpm create vite fresh-app --template=${template}`,
@@ -22,6 +21,19 @@ export function vite(
     displayedCommand: `pnpm create vite --template=${template}`,
     frameworkUrl: 'https://vitejs.dev/',
     frameworkDocumentationUrl: 'https://vitejs.dev/guide/',
+  }
+}
+
+export function viteStatic(
+  template: string,
+): Pick<
+  Generator,
+  'displayedCommand' | 'frameworkUrl' | 'frameworkDocumentationUrl'
+> &
+  GeneratorCommand &
+  GeneratorStaticOutput {
+  return {
+    ...vite(template),
     staticOutputDirectory: 'dist',
   }
 }

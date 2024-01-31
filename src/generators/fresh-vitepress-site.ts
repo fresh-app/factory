@@ -2,16 +2,30 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   description: 'Fresh VitePress site',
-  command: [
-    'mkdir fresh-app',
-    'cd fresh-app',
-    'yarn add --dev vitepress vue',
-    'wget https://github.com/vuejs/vitepress/raw/main/docs/index.md -O index.md',
-    'wget https://github.com/vuejs/vitepress/raw/main/.gitignore -O .gitignore',
-    `cat package.json | jq '.scripts.dev = "vitepress dev" | .scripts.build = "vitepress build" | .scripts.serve = "vitepress serve"' > package.json.tmp && mv package.json.tmp package.json`,
-    'yarn build',
-    'test -f .vitepress/dist/index.html && echo "Ok, output file exists" || (echo "Error, output file does not exist" && exit 1)',
-  ].join('\n'),
+  script: async (t) => {
+    await t.send('mkdir fresh-app && cd fresh-app && echo "{}" > package.json')
+    await t.waitForText('$')
+    await t.send('corepack use pnpm@latest')
+    await t.waitForText('$')
+    await t.send('pnpm add -D vitepress vue')
+    await t.waitForText('$')
+    await t.send('pnpm vitepress init')
+    await t.waitForText('Where')
+    await t.send('')
+    await t.waitForText('title')
+    await t.send('')
+    await t.waitForText('description')
+    await t.send('')
+    await t.waitForText('Theme')
+    await t.send('')
+    await t.waitForText('TypeScript')
+    await t.send('')
+    await t.waitForText('package')
+    await t.send('')
+    await t.waitForText('Done')
+    await t.send('pnpm docs:build')
+    await t.waitForText('$')
+  },
   staticOutputDirectory: '.vitepress/dist',
   frameworkUrl: 'https://vitepress.vuejs.org/',
   frameworkDocumentationUrl:
