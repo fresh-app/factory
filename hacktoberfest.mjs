@@ -1,6 +1,6 @@
 import { execSync } from 'child_process'
 
-const list = execSync('yarn factory list --json').toString()
+const list = execSync('pnpm factory list --json').toString()
 let n = 0
 const task = (text) => {
   const id = ++n

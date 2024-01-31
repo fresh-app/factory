@@ -2,14 +2,15 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   command: [
-    'yarn create next-app fresh-app --eslint --src-dir --typescript --no-experimental-app --import-alias="@/*"',
+    'pnpm create next-app fresh-app --app --eslint --import-alias "@/*" --src-dir --tailwind --typescript',
     'cd fresh-app',
-    'yarn build',
+    'corepack use pnpm@latest',
+    'pnpm build',
   ].join('\n'),
-  displayedCommand: 'yarn create next-app --typescript',
+  displayedCommand: 'pnpm create next-app',
   description: 'Fresh Next app',
   frameworkUrl: 'https://nextjs.org/',
   frameworkDocumentationUrl: 'https://nextjs.org/docs',
-  serverCommand: 'yarn start',
+  serverCommand: 'pnpm start',
   serverPort: 3000,
 })

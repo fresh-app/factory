@@ -27,14 +27,14 @@ This project aims to make it easier for developers to get started with new app f
 
 ### Prerequisites
 
-- Node.js and Yarn
+- Node.js and Corepack
 - Docker
 
 ### Setup
 
 ```sh
 # Install dependencies
-yarn
+pnpm install
 
 # Build docker image
 bin/build
