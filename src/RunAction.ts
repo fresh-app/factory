@@ -6,6 +6,7 @@ import { Generator } from './defineGenerator'
 import { readFileSync, writeFileSync } from 'fs'
 import { GeneratorAction } from './GeneratorAction'
 import { getRepoDescription } from './getRepoDescription'
+import waitOn from 'wait-on'
 
 export class RunAction extends GeneratorAction {
   private _skipGenerator!: CommandLineFlagParameter
@@ -48,18 +49,21 @@ export class RunAction extends GeneratorAction {
       if ('script' in generator) {
         await generator.script(session)
       } else {
-        const completedMessage = 'Finished running generator.'
+        const completedMessage = readFileSync(
+          'src/completed.txt',
+          'utf8',
+        ).trim()
         const escapedCommand = generator.command.replace(/'/g, "'\\''")
-        const bashCommand = `bash -exc '${escapedCommand}' < /dev/null; echo '${completedMessage}'`
+        const bashCommand = `bash -exc '${escapedCommand}' < /dev/null; cat /opt/factory/src/completed.txt`
         await session.send(bashCommand)
         await session.waitForText(completedMessage)
       }
+      console.log('=> Workspace setup script running completed')
 
       if (
         'staticOutputDirectory' in generator ||
         'serverCommand' in generator
       ) {
-        const completedMessage = 'Finished taking screenshot.'
         const cdTarget =
           'staticOutputDirectory' in generator
             ? '/workspace/fresh-app/' + generator.staticOutputDirectory
@@ -68,19 +72,21 @@ export class RunAction extends GeneratorAction {
           'serverCommand' in generator ? generator.serverCommand : 'http-server'
         const serverPort =
           'serverCommand' in generator ? generator.serverPort : 8080
+        console.log('=> Starting server on port', serverPort)
         await session.send(`cd ${cdTarget}`)
         await session.waitForText('$')
-        await session.send(
-          `/opt/factory/bin/screenshot '${serverCommand}' ${serverPort} || true; echo '${completedMessage}'`,
+        await session.send(serverCommand)
+        await waitOn({
+          resources: [`tcp:localhost:${serverPort}`],
+          timeout: 60000,
+        })
+        console.log('=> Server started')
+        await this.run(
+          `bin/screenshotter /opt/factory/bin/screenshot http://localhost:${serverPort} || echo 'Unable to capture screenshot.'`,
         )
-        await session.waitForText(completedMessage, 240e3)
+        console.log('=> Done screenshot capturing attempt')
       }
-
-      await session.send('exit')
-      const exitCode = await session.waitForExit()
-      if (exitCode !== 0) {
-        throw new Error(`The generator exited with code ${exitCode}`)
-      }
+      child.kill()
 
       const finishTime = new Date().toISOString()
       writeFileSync(
@@ -97,7 +103,7 @@ export class RunAction extends GeneratorAction {
         `docker cp factory-runner-instance/:workspace/fresh-app/ workspace/fresh-app/`,
       )
       await this.run(
-        `docker cp factory-runner-instance/:workspace/screenshot.png workspace/tmp/screenshot.png || echo 'No screenshot found.'`,
+        `docker cp factory-screenshotter-instance/:workspace/screenshot.png workspace/tmp/screenshot.png || echo 'No screenshot found.'`,
       )
     }
 
