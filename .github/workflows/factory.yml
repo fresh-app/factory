@@ -87,6 +87,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
+          node-version: '20'
       - run: pnpm install
       - run: bin/run ${{ matrix.generator }}
       - run: node provision ${{ matrix.generator }}

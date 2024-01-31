@@ -38,6 +38,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
+          node-version: '20'
       - run: pnpm install
       - run: bin/run ${{ github.event.inputs.generator }}
       - run: node provision ${{ github.event.inputs.generator }}
