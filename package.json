@@ -14,14 +14,18 @@
     "shelljs": "^0.8.5",
     "tsx": "^3.9.0",
     "typescript": "^4.8.4",
+    "wait-on": "^7.2.0",
     "xterm-addon-serialize": "^0.8.0",
     "xterm-headless": "^5.0.0"
   },
   "scripts": {
     "factory": "tsx src/main.ts"
   },
-  "packageManager": "yarn@3.2.3",
   "engines": {
-    "node": "16.x"
+    "node": "20.x"
+  },
+  "packageManager": "pnpm@8.15.1+sha256.245fe901f8e7fa8782d7f17d32b6a83995e2ae03984cb5b62b8949bfdc27c7b5",
+  "devDependencies": {
+    "@types/wait-on": "^5.3.4"
   }
 }

@@ -2,12 +2,11 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   command: [
-    'npm instal -g pnpm',
-    'npx degit solidjs/templates/ts fresh-app',
+    'pnpx degit solidjs/templates/ts fresh-app',
     'cd fresh-app',
     'rm -f pnpm-lock.yaml',
-    'pnpm install',
-    'pnpm run build',
+    'corepack use pnpm@latest',
+    'pnpm build',
   ].join('\n'),
   displayedCommand: 'npx degit solidjs/templates/ts',
   description: 'Fresh SolidJS app',

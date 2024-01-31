@@ -1,7 +1,11 @@
-FROM mcr.microsoft.com/playwright:v1.31.0-focal
-RUN apt-get update && apt-get install -y jq sudo unzip
-RUN echo 'pwuser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+FROM node:20-bookworm
+RUN apt-get update && apt-get install -y bash curl git jq sudo unzip
+RUN echo 'node ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+RUN corepack enable
+RUN corepack install --global pnpm@latest
+ENV PATH="/pnpm-bin:${PATH}"
+ENV PNPM_HOME="/pnpm-bin"
+RUN mkdir /pnpm-bin && chown node:node /pnpm-bin
+USER node
 WORKDIR /workspace
-RUN chown -R pwuser:pwuser /workspace /usr/local /usr/lib/node_modules && chmod a+w /usr/bin
-USER pwuser
-RUN npm install -g playwright-core@1.31.0 start-server-and-test http-server
+RUN pnpm install --global http-server

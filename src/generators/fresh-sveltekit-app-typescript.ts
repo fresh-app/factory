@@ -4,7 +4,7 @@ export default defineGenerator({
   description: 'Fresh SvelteKit app',
   longDescription: 'Fresh SvelteKit app, with TypeScript',
   script: async (t) => {
-    await t.send('yarn create svelte fresh-app')
+    await t.send('pnpm create svelte fresh-app')
     await t.waitForText('template')
     await t.send('')
     await t.waitForText('TypeScript')
@@ -19,19 +19,17 @@ export default defineGenerator({
     await t.send('')
     await t.waitForText('additional options')
     await t.send('a')
-    await t.waitForText('Done')
     await t.waitForText('$')
     await t.send('cd fresh-app')
     await t.waitForText('$')
-    await t.send('yarn')
+    await t.send('corepack use pnpm@latest')
     await t.waitForText('Done')
-    await t.send('yarn build')
-    await t.waitForText('Done')
+    await t.send('pnpm build')
     await t.waitForText('$')
   },
-  displayedCommand: 'yarn create svelte',
+  displayedCommand: 'pnpm create svelte',
   frameworkUrl: 'https://kit.svelte.dev/',
   frameworkDocumentationUrl: 'https://kit.svelte.dev/docs',
-  serverCommand: 'yarn preview',
+  serverCommand: 'pnpm preview',
   serverPort: 4173,
 })

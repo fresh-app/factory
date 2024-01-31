@@ -1,11 +1,6 @@
-import { defineGenerator } from '../defineGenerator'
+import { defineGenerator, viteStatic } from '../defineGenerator'
 
 export default defineGenerator({
+  ...viteStatic('vanilla'),
   description: 'Fresh Vite app',
-  command:
-    'yarn create vite fresh-app --template=vanilla && cd fresh-app && yarn && yarn build',
-  displayedCommand: 'yarn create vite fresh-app --template=vanilla',
-  frameworkUrl: 'https://vitejs.dev/',
-  frameworkDocumentationUrl: 'https://vitejs.dev/guide/',
-  staticOutputDirectory: 'dist',
 })

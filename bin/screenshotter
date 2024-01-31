@@ -1,12 +1,12 @@
 #!/bin/bash -e
-docker rm -f factory-runner-instance >/dev/null 2>&1
+docker rm -f factory-screenshotter-instance >/dev/null 2>&1
 exec docker run \
-  --name=factory-runner-instance \
+  --name=factory-screenshotter-instance \
   -v "$PWD:/opt/factory:ro" \
   -ti \
   --ipc=host \
   --network=host \
   --hostname=factory \
   --tmpfs=/tmp \
-  factory-runner \
-  bash -e
+  factory-screenshotter \
+  "$@"

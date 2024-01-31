@@ -1,2 +1,3 @@
 #!/bin/bash -e
 docker build -t factory-runner runner
+docker build -t factory-screenshotter screenshotter

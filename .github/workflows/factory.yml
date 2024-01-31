@@ -24,7 +24,6 @@ jobs:
           - fresh-playwright-project
           - fresh-react-app-typescript
           - fresh-react-app
-          - fresh-remix-app-vercel
           - fresh-remix-app
           - fresh-solid-app-ts
           - fresh-sveltekit-app-typescript
@@ -45,28 +44,30 @@ jobs:
           - fresh-vitepress-site
           - fresh-vscode-extension
           - fresh-vscode-web-extension
-          - fresh-yarn-pnp-project
+
+          # Removed from the factory on 2024-01-31 due Remix no longer has a special Vercel config in their setup wizard.
+          # - fresh-remix-app-vercel
+
+          # Removed from the factory on 2024-01-31 due to lack of maintenance from my side (I have since switched to using pnpm).
+          # - fresh-yarn-pnp-project
 
           # Removed from the factory on 2023-03-19 because the generator script fails very often.
           # - fresh-redwood-app-typescript
           # - fresh-redwood-app
 
-          # Removed from the factory on 2021-03-19 because the generator script fails on
-          # recent Node.js versions and the generator is not maintained anymore
-          # (no updates since 2020-10-13).
+          # Removed from the factory on 2021-03-19 because the generator script fails on recent Node.js versions and the generator is not maintained anymore (no updates since 2020-10-13).
           # See: https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported)
           # - fresh-tsdx-lib
           # - fresh-tsdx-react-component-with-storybook
           # - fresh-tsdx-react-component
 
-          # Removed from the factory on 2021-03-19 because the generator script does not
-          # support Node.js v18.
+          # Removed from the factory on 2021-03-19 because the generator script does not support Node.js v18.
           # See: https://github.com/microsoft/rushstack/issues/4017
           # - fresh-rush-monorepo
     env:
       BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - uses: docker/setup-buildx-action@v1
       - uses: docker/build-push-action@v2
         with:
@@ -82,13 +83,14 @@ jobs:
           TOKEN="$(npx obtain-github-app-installation-access-token ci ${{ secrets.GH_APP_CREDENTIALS_TOKEN }})"
           echo "::add-mask::$TOKEN"
           echo "::set-output name=token::$TOKEN"
-
-      - uses: actions/setup-node@v1
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16.x
-      - run: yarn
+          cache: 'pnpm'
+          node-version: '20'
+      - run: pnpm install
       - run: bin/run ${{ matrix.generator }}
-      - run: yarn node provision ${{ matrix.generator }}
+      - run: node provision ${{ matrix.generator }}
         if: '!inputs.dry-run'
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
@@ -96,7 +98,7 @@ jobs:
         if: '!inputs.dry-run'
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
-      - run: yarn factory upload-result
+      - run: pnpm factory upload-result
         if: '!inputs.dry-run'
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
