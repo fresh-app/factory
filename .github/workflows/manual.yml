@@ -27,6 +27,13 @@ jobs:
           tags: factory-runner
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      - uses: docker/build-push-action@v2
+        with:
+          context: screenshotter
+          load: true
+          tags: factory-screenshotter
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
       - name: Obtain a GitHub App Installation Access Token
         id: githubAppAuth
         run: |
