@@ -47,6 +47,7 @@ jobs:
           cache: 'pnpm'
           node-version: '20'
       - run: pnpm install
+      - run: pipx install asciinema
       - run: bin/run ${{ github.event.inputs.generator }}
       - run: node provision ${{ github.event.inputs.generator }}
         if: '!inputs.dry-run'

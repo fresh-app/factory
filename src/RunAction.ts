@@ -39,11 +39,15 @@ export class RunAction extends GeneratorAction {
       await this.run(`mkdir -p workspace/tmp`)
 
       const startTime = new Date().toISOString()
-      const child = spawn('bin/runner', [], {
-        name: 'xterm-color',
-        cols: 120,
-        rows: 120,
-      })
+      const child = spawn(
+        'asciinema',
+        ['rec', '-c', 'bin/runner', 'workspace/tmp/terminal.cast'],
+        {
+          name: 'xterm-color',
+          cols: 120,
+          rows: 120,
+        },
+      )
       const session = new TerminalSession(child)
       await session.waitForText('workspace$')
       if ('script' in generator) {

@@ -64,5 +64,12 @@ export class UploadResultAction extends CommandLineAction {
         `Upload ${result.generator} screenshot`,
       )
     }
+    if (existsSync('workspace/tmp/terminal.cast')) {
+      await updateFile(
+        result.generator + '.cast',
+        readFileSync('workspace/tmp/terminal.cast'),
+        `Upload ${result.generator} terminal cast`,
+      )
+    }
   }
 }

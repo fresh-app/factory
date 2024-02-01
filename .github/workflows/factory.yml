@@ -97,6 +97,7 @@ jobs:
           cache: 'pnpm'
           node-version: '20'
       - run: pnpm install
+      - run: pipx install asciinema
       - run: bin/run ${{ matrix.generator }}
       - run: node provision ${{ matrix.generator }}
         if: '!inputs.dry-run'
