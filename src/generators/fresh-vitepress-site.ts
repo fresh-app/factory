@@ -25,6 +25,10 @@ export default defineGenerator({
     await t.waitForText('Done')
     await t.send('pnpm docs:build')
     await t.waitForText('$')
+    await t.send(
+      'wget https://github.com/vuejs/vitepress/raw/main/.gitignore -O .gitignore',
+    )
+    await t.waitForText('$')
   },
   staticOutputDirectory: '.vitepress/dist',
   frameworkUrl: 'https://vitepress.vuejs.org/',
