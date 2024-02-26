@@ -26,6 +26,7 @@ jobs:
           - fresh-react-app-typescript
           - fresh-react-app
           - fresh-remix-app
+          - fresh-remix-spa
           - fresh-solid-app-ts
           - fresh-sveltekit-app-typescript
           - fresh-t3-app
