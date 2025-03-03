@@ -2,7 +2,7 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   command: [
-    'pnpm create next-app fresh-app --app --eslint --import-alias "@/*" --src-dir --tailwind --javascript',
+    'pnpm create next-app fresh-app --app --eslint --import-alias "@/*" --src-dir --tailwind --javascript --yes',
     'cd fresh-app',
     'corepack use pnpm@latest',
     'pnpm build',

@@ -1,7 +1,9 @@
 # TypeScript Project Guidelines
 
 ## Build & Run Commands
-- `pnpm factory`: Run the main application
+- `pnpm install`: Install project dependencies
+- `bin/build`: Build Docker images required for the generators 
+- `bin/run <generator-name>`: Run a specific generator (e.g., `bin/run fresh-vite-app`)
 - Build system uses TSX for TypeScript execution
 
 ## TypeScript Configuration

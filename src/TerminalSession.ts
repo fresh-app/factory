@@ -1,6 +1,6 @@
-import { Terminal } from 'xterm-headless'
+import { Terminal } from '@xterm/headless'
 import { IPty } from 'node-pty'
-import { SerializeAddon } from 'xterm-addon-serialize'
+import { SerializeAddon } from '@xterm/addon-serialize'
 
 export class TerminalSession {
   private exitPromise: Promise<number>
