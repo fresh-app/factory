@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
-          node-version: '20'
+          node-version: '22.14.0'
       - run: pnpm install
       - run: pnpm prettier --write .
       - run: git add --update

@@ -1,4 +1,4 @@
-FROM node:20-bookworm
+FROM node:22.14.0-bookworm
 RUN apt-get update && apt-get install -y bash curl git jq sudo unzip
 RUN echo 'node ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 RUN corepack enable
