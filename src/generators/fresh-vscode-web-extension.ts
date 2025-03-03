@@ -3,9 +3,15 @@ import { defineGenerator } from '../defineGenerator'
 export default defineGenerator({
   command: [
     'sudo pnpx playwright install-deps',
-    'pnpm install --global yo generator-code @vscode/test-web',
-    'yo code --quick --extensionType=web --gitInit=false fresh-extension',
-    'mv fresh-extension fresh-app',
+    'mkdir -p yeoman_temp',
+    'cd yeoman_temp',
+    'pnpm init',
+    'pnpm add yo generator-code',
+    'pnpm install --global @vscode/test-web',
+    'pnpm exec yo code --quick --extensionType=web --gitInit=false fresh-extension',
+    'cd ..',
+    'mv yeoman_temp/fresh-extension fresh-app',
+    'rm -rf yeoman_temp',
     'test -f fresh-app/package.json',
   ].join('\n'),
   displayedCommand: 'yo code --extensionType=web',

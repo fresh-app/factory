@@ -12,6 +12,6 @@ export default defineGenerator({
   frameworkUrl: 'https://create.t3.gg/',
   frameworkDocumentationUrl: 'https://github.com/t3-oss/create-t3-app#readme',
   serverCommand:
-    'env DISCORD_CLIENT_ID=dummy DISCORD_CLIENT_SECRET=dummy pnpm dev',
+    'env AUTH_DISCORD_ID=dummy AUTH_DISCORD_SECRET=dummy pnpm dev',
   serverPort: 3000,
 })

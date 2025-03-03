@@ -2,9 +2,14 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   command: [
-    'pnpm install --global yo generator-code',
-    'yo code --quick --extensionType=ts --gitInit=false fresh-extension',
-    'mv fresh-extension fresh-app',
+    'mkdir -p yeoman_temp',
+    'cd yeoman_temp',
+    'pnpm init',
+    'pnpm add yo generator-code',
+    'pnpm exec yo code --quick --extensionType=ts --gitInit=false fresh-extension',
+    'cd ..',
+    'mv yeoman_temp/fresh-extension fresh-app',
+    'rm -rf yeoman_temp',
     'test -f fresh-app/package.json',
   ].join('\n'),
   displayedCommand: 'yo code --extensionType=ts',
