@@ -1,18 +1,21 @@
 # TypeScript Project Guidelines
 
 ## Build & Run Commands
+
 - `pnpm install`: Install project dependencies
-- `bin/build`: Build Docker images required for the generators 
+- `bin/build`: Build Docker images required for the generators
 - `bin/run <generator-name>`: Run a specific generator (e.g., `bin/run fresh-vite-app`)
 - Build system uses TSX for TypeScript execution
 
 ## TypeScript Configuration
+
 - Target: ES2016
 - Module: CommonJS
 - Strict type checking enabled
 - Uses noEmit (relies on tsx for direct execution)
 
 ## Code Style Patterns
+
 - Import statements: one import per line
 - Class naming: PascalCase (e.g., `TerminalSession`, `GeneratorAction`)
 - Interface naming: PascalCase with semantic names (e.g., `Generator`, `GeneratorInfo`)
@@ -22,13 +25,16 @@
 - Parameter naming: camelCase with underscores for private members
 
 ## Project Structure
+
 - `/src`: Main source code
 - `/src/generators`: Generator definitions for various project types
 - TypeScript classes follow single responsibility principle
 - Command-line interface using @rushstack/ts-command-line
 
 ## Node.js Version Management
+
 To upgrade Node.js version, update these files:
+
 1. `package.json`: Update the `engines.node` field
 2. `runner/Dockerfile`: Update the Node.js base image
 3. GitHub workflow files (`.github/workflows/*.yml`): Update `node-version`
