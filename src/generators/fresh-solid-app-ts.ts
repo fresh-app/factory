@@ -7,6 +7,7 @@ export default defineGenerator({
     'rm -f pnpm-lock.yaml',
     'corepack use pnpm@latest',
     'pnpm install',
+    'pnpm add -D vite',
     'pnpm exec vite build',
   ].join('\n'),
   displayedCommand: 'npx degit solidjs/templates/ts',
