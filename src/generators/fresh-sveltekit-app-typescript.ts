@@ -8,7 +8,7 @@ export default defineGenerator({
     'cd fresh-app',
     'corepack use pnpm@latest',
     'pnpm install',
-    'pnpm dlx sv add eslint playwright prettier tailwindcss vitest --tailwindcss=none --no-install',
+    'echo "n" | pnpm dlx sv add eslint playwright prettier tailwindcss vitest --tailwindcss=none --no-install || true',
     'pnpm install',
     'pnpm build',
   ].join('\n'),
