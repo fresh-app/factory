@@ -9,6 +9,9 @@ on:
         required: false
   schedule:
     - cron: '0 0 * * *'
+  pull_request:
+    branches:
+      - main
 jobs:
   build:
     timeout-minutes: 15
@@ -71,15 +74,15 @@ jobs:
       BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - uses: actions/checkout@v4
-      - uses: docker/setup-buildx-action@v1
-      - uses: docker/build-push-action@v2
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
         with:
           context: runner
           load: true
           tags: factory-runner
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      - uses: docker/build-push-action@v2
+      - uses: docker/build-push-action@v6
         with:
           context: screenshotter
           load: true
@@ -92,7 +95,8 @@ jobs:
         run: |
           TOKEN="$(npx obtain-github-app-installation-access-token ci ${{ secrets.GH_APP_CREDENTIALS_TOKEN }})"
           echo "::add-mask::$TOKEN"
-          echo "::set-output name=token::$TOKEN"
+          echo "token=$TOKEN" >> "$GITHUB_OUTPUT"
+        continue-on-error: true
       - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v4
         with:
@@ -100,15 +104,44 @@ jobs:
           node-version: '22.14.0'
       - run: pnpm install
       - run: bin/run ${{ matrix.generator }}
+      - name: Clean up generated project
+        run: |
+          cd workspace/fresh-app
+          git init
+          git config user.email "factory@fresh-app.github.io"
+          git config user.name "Fresh App Factory"
+          git add .
+          git clean -fdx
+          rm -rf .git
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.generator }}_build
+          path: workspace/fresh-app/
+          retention-days: 3
+
+      - name: Upload metadata artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.generator }}_metadata
+          path: |
+            workspace/tmp/screenshot.png
+            workspace/tmp/terminal.log
+            workspace/tmp/timing.json
+            workspace/tmp/result.json
+          retention-days: 3
+          if-no-files-found: ignore
+
       - run: node provision ${{ matrix.generator }}
-        if: '!inputs.dry-run'
+        if: ${{ !inputs.dry-run && steps.githubAppAuth.outputs.token != '' }}
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
       - run: bash sync.sh
-        if: '!inputs.dry-run'
+        if: ${{ !inputs.dry-run && steps.githubAppAuth.outputs.token != '' }}
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
       - run: pnpm factory upload-result
-        if: '!inputs.dry-run'
+        if: ${{ !inputs.dry-run && steps.githubAppAuth.outputs.token != '' }}
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
