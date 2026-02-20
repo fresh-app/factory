@@ -20,6 +20,6 @@ export default defineGenerator({
   frameworkUrl: 'https://code.visualstudio.com/api',
   frameworkDocumentationUrl:
     'https://code.visualstudio.com/api/extension-guides/web-extensions',
-  serverCommand: 'vscode-test-web --extensionDevelopmentPath=. .',
+  serverCommand: 'vscode-test-web --headless --extensionDevelopmentPath=. .',
   serverPort: 3000,
 })
