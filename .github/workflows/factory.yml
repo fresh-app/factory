@@ -101,7 +101,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
-          node-version: '22.14.0'
+          node-version: '24.13.1'
       - run: pnpm install
       - run: bin/run ${{ matrix.generator }}
       - name: Clean up generated project

@@ -43,9 +43,13 @@ export class ListAction extends CommandLineAction {
     }
   }
   private async loadGenerator(name: string) {
-    const { default: generator } = (await import(
-      `./generators/${name}.ts`
-    )) as { default: Generator }
+    const module = (await import(`./generators/${name}.ts`)) as {
+      default: Generator | { default: Generator }
+    }
+    const generator =
+      'command' in module.default || 'script' in module.default
+        ? module.default
+        : module.default.default
     return generator
   }
 }

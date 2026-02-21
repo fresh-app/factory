@@ -14,7 +14,7 @@
     "octokit": "^2.0.7",
     "prettier": "^2.7.1",
     "shelljs": "^0.8.5",
-    "tsx": "^3.9.0",
+    "tsx": "^4.21.0",
     "typescript": "^4.8.4",
     "wait-on": "^7.2.0"
   },
@@ -22,7 +22,7 @@
     "factory": "tsx src/main.ts"
   },
   "engines": {
-    "node": "22.x"
+    "node": "24.x"
   },
   "packageManager": "pnpm@8.15.1+sha256.245fe901f8e7fa8782d7f17d32b6a83995e2ae03984cb5b62b8949bfdc27c7b5",
   "devDependencies": {

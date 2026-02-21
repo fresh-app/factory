@@ -29,9 +29,13 @@ export class RunAction extends GeneratorAction {
 
   protected async onExecute(): Promise<void> {
     console.log('=> Running generator', this.generator)
-    const { default: generator } = (await import(
-      `./generators/${this.generator}.ts`
-    )) as { default: Generator }
+    const module = (await import(`./generators/${this.generator}.ts`)) as {
+      default: Generator | { default: Generator }
+    }
+    const generator =
+      'command' in module.default || 'script' in module.default
+        ? module.default
+        : module.default.default
 
     if (!this._skipGenerator.value) {
       console.log('=> Prepare output folder')
