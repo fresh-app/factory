@@ -34,6 +34,8 @@ jobs:
           - fresh-solid-app-ts
           - fresh-sveltekit-app-typescript
           - fresh-t3-app
+          - fresh-tanstack-start-app
+          - fresh-tsdown-lib
           - fresh-turbo-monorepo
           - fresh-vite-app-lit-element-ts
           - fresh-vite-app-lit-element
