@@ -50,6 +50,7 @@ jobs:
           - fresh-vitepress-site
           - fresh-viteplus-app
           - fresh-viteplus-lib
+          - fresh-viteplus-monorepo
           - fresh-vscode-extension
           - fresh-vscode-web-extension
 
