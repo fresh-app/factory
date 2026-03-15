@@ -48,6 +48,7 @@ jobs:
           - fresh-vite-app-vue
           - fresh-vite-app
           - fresh-vitepress-site
+          - fresh-viteplus-app
           - fresh-vscode-extension
           - fresh-vscode-web-extension
 
