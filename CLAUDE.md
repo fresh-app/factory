@@ -1,4 +1,11 @@
-# TypeScript Project Guidelines
+# Fresh App Factory Project Guidelines
+
+## Creating and Updating Generators
+
+1. Look at existing generators in `src/generators/` to see the pattern. Notice how Corepack is used to pin pnpm version, etc. Especially consult similar generator
+2. Create/update the generator file
+3. Test the generator with `bin/run <name>` and inspect the generated files at `workspace/fresh-app/`
+4. In case of adding new generator, update `.github/workflows/factory.yml` to add the new generator to the list
 
 ## Build & Run Commands
 
