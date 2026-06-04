@@ -5,6 +5,7 @@ export default defineGenerator({
     'mkdir -p yeoman_temp',
     'cd yeoman_temp',
     'pnpm init',
+    'jq "del(.devEngines)" package.json > package.json.tmp && mv package.json.tmp package.json',
     'pnpm add yo generator-code',
     'pnpm exec yo code --quick --extensionType=ts --gitInit=false fresh-extension',
     'cd ..',
