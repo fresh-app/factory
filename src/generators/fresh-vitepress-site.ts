@@ -8,7 +8,7 @@ export default defineGenerator({
     await t.send('corepack use pnpm@latest')
     await t.waitForText('$')
     await t.send(
-      `jq '.pnpm.onlyBuiltDependencies = ((.pnpm.onlyBuiltDependencies // []) + ["esbuild","sharp","unrs-resolver","@swc/core","core-js","lightningcss","@tailwindcss/oxide","@parcel/watcher","rollup"] | unique)' package.json > package.json.tmp && mv package.json.tmp package.json`,
+      '{ echo "onlyBuiltDependencies:"; echo "  - esbuild"; echo "  - sharp"; echo "  - unrs-resolver"; echo "  - \\"@swc/core\\""; echo "  - core-js"; echo "  - lightningcss"; echo "  - \\"@tailwindcss/oxide\\""; echo "  - \\"@parcel/watcher\\""; echo "  - rollup"; } >> pnpm-workspace.yaml',
     )
     await t.waitForText('$')
     await t.send('pnpm add -D vitepress vue')

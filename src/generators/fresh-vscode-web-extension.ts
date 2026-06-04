@@ -7,6 +7,7 @@ export default defineGenerator({
     'cd yeoman_temp',
     'pnpm init',
     'jq "del(.devEngines)" package.json > package.json.tmp && mv package.json.tmp package.json',
+    '{ echo "onlyBuiltDependencies:"; echo "  - yo"; echo "  - esbuild"; } >> pnpm-workspace.yaml',
     'pnpm add yo generator-code',
     'pnpm install --global @vscode/test-web',
     'pnpm exec yo code --quick --extensionType=web --gitInit=false fresh-extension',
