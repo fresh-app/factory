@@ -7,6 +7,10 @@ export default defineGenerator({
     await t.waitForText('$')
     await t.send('corepack use pnpm@latest')
     await t.waitForText('$')
+    await t.send(
+      `jq '.pnpm.onlyBuiltDependencies = ((.pnpm.onlyBuiltDependencies // []) + ["esbuild","sharp","unrs-resolver","@swc/core","core-js","lightningcss","@tailwindcss/oxide","@parcel/watcher","rollup"] | unique)' package.json > package.json.tmp && mv package.json.tmp package.json`,
+    )
+    await t.waitForText('$')
     await t.send('pnpm add -D vitepress vue')
     await t.waitForText('$')
     await t.send('pnpm vitepress init')

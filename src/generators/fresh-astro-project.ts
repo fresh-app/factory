@@ -4,6 +4,7 @@ export default defineGenerator({
   command: [
     'pnpm create astro fresh-app --template basics --no-install --no-git --skip-houston --typescript=strict',
     'cd fresh-app',
+    'jq ".pnpm.onlyBuiltDependencies = ((.pnpm.onlyBuiltDependencies // []) + [\\"esbuild\\",\\"sharp\\",\\"unrs-resolver\\",\\"@swc/core\\",\\"core-js\\",\\"lightningcss\\",\\"@tailwindcss/oxide\\",\\"@parcel/watcher\\",\\"rollup\\"] | unique)" package.json > package.json.tmp && mv package.json.tmp package.json',
     'corepack use pnpm@latest',
     'pnpm build',
   ].join('\n'),
