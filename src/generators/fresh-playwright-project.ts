@@ -2,9 +2,10 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   command: [
+    'echo "package-manager-strict=false" >> .npmrc',
     'pnpm create playwright fresh-app --gha --lang=TypeScript --no-browsers --quiet',
     'cd fresh-app',
-    '{ echo "onlyBuiltDependencies:"; echo "  - esbuild"; echo "  - sharp"; echo "  - unrs-resolver"; echo "  - \\"@swc/core\\""; echo "  - core-js"; echo "  - lightningcss"; echo "  - \\"@tailwindcss/oxide\\""; echo "  - \\"@parcel/watcher\\""; echo "  - rollup"; } >> pnpm-workspace.yaml',
+    '{ echo "allowBuilds:"; echo "  esbuild: true"; echo "  sharp: true"; echo "  unrs-resolver: true"; echo "  \\"@swc/core\\": true"; echo "  core-js: true"; echo "  lightningcss: true"; echo "  \\"@tailwindcss/oxide\\": true"; echo "  \\"@parcel/watcher\\": true"; echo "  rollup: true"; } >> pnpm-workspace.yaml',
     'corepack use pnpm@latest',
     'pnpm playwright install --with-deps',
     'pnpm playwright test',
