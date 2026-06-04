@@ -7,13 +7,7 @@ export default defineGenerator({
     await t.waitForText('$')
     await t.send('corepack use pnpm@latest')
     await t.waitForText('$')
-    await t.send(
-      'awk "BEGIN{skip=0} /^allowBuilds:/{skip=1;next} /^[^ ]/{skip=0} !skip{print}" pnpm-workspace.yaml > /tmp/pw.tmp && mv /tmp/pw.tmp pnpm-workspace.yaml || true',
-    )
-    await t.waitForText('$')
-    await t.send(
-      '{ echo "allowBuilds:"; echo "  esbuild: true"; echo "  sharp: true"; echo "  unrs-resolver: true"; echo "  \\"@swc/core\\": true"; echo "  core-js: true"; echo "  lightningcss: true"; echo "  \\"@tailwindcss/oxide\\": true"; echo "  \\"@parcel/watcher\\": true"; echo "  rollup: true"; } >> pnpm-workspace.yaml',
-    )
+    await t.send('setup-pnpm-builds')
     await t.waitForText('$')
     await t.send('pnpm add -D vitepress vue')
     await t.waitForText('$')
