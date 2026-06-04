@@ -6,6 +6,7 @@ export default defineGenerator({
     'cd yeoman_temp',
     'pnpm init',
     'jq "del(.devEngines)" package.json > package.json.tmp && mv package.json.tmp package.json',
+    'awk "BEGIN{skip=0} /^allowBuilds:/{skip=1;next} /^[^ ]/{skip=0} !skip{print}" pnpm-workspace.yaml > /tmp/pw.tmp && mv /tmp/pw.tmp pnpm-workspace.yaml || true',
     '{ echo "allowBuilds:"; echo "  yo: true"; echo "  esbuild: true"; } >> pnpm-workspace.yaml',
     'pnpm add yo generator-code',
     'pnpm exec yo code --quick --extensionType=ts --gitInit=false fresh-extension',
