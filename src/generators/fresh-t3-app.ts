@@ -5,7 +5,7 @@ export default defineGenerator({
   command: [
     'pnpm create t3-app fresh-app --default --noGit --noInstall',
     'cd fresh-app',
-    'jq ".pnpm.onlyBuiltDependencies = ((.pnpm.onlyBuiltDependencies // []) + [\\"esbuild\\",\\"sharp\\",\\"unrs-resolver\\",\\"@swc/core\\",\\"core-js\\",\\"lightningcss\\",\\"@tailwindcss/oxide\\",\\"@parcel/watcher\\",\\"rollup\\",\\"@prisma/client\\",\\"prisma\\"] | unique)" package.json > package.json.tmp && mv package.json.tmp package.json',
+    '{ echo "onlyBuiltDependencies:"; echo "  - esbuild"; echo "  - sharp"; echo "  - unrs-resolver"; echo "  - \\"@swc/core\\""; echo "  - core-js"; echo "  - lightningcss"; echo "  - \\"@tailwindcss/oxide\\""; echo "  - \\"@parcel/watcher\\""; echo "  - rollup"; echo "  - \\"@prisma/client\\""; echo "  - prisma"; } >> pnpm-workspace.yaml',
     'corepack use pnpm@latest',
     'pnpm db:push',
   ].join('\n'),
