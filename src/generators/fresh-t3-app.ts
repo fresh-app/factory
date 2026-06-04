@@ -5,8 +5,7 @@ export default defineGenerator({
   command: [
     'pnpm create t3-app fresh-app --default --noGit --noInstall',
     'cd fresh-app',
-    'awk "BEGIN{skip=0} /^allowBuilds:/{skip=1;next} /^[^ ]/{skip=0} !skip{print}" pnpm-workspace.yaml > /tmp/pw.tmp && mv /tmp/pw.tmp pnpm-workspace.yaml || true',
-    '{ echo "allowBuilds:"; echo "  esbuild: true"; echo "  sharp: true"; echo "  unrs-resolver: true"; echo "  \\"@swc/core\\": true"; echo "  core-js: true"; echo "  lightningcss: true"; echo "  \\"@tailwindcss/oxide\\": true"; echo "  \\"@parcel/watcher\\": true"; echo "  rollup: true"; echo "  \\"@prisma/client\\": true"; echo "  prisma: true"; echo "  \\"@prisma/engines\\": true"; } >> pnpm-workspace.yaml',
+    'setup-pnpm-builds @prisma/client prisma @prisma/engines',
     'corepack use pnpm@latest',
     'pnpm db:push',
   ].join('\n'),
