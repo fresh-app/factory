@@ -2,7 +2,8 @@ import { defineGenerator } from '../defineGenerator'
 
 export default defineGenerator({
   command: [
-    'export COREPACK_ENABLE_STRICT=0',
+    'mkdir fresh-app',
+    "echo '{}' > fresh-app/package.json",
     'pnpm create playwright fresh-app --gha --lang=TypeScript --no-browsers --quiet',
     'cd fresh-app',
     'awk "BEGIN{skip=0} /^allowBuilds:/{skip=1;next} /^[^ ]/{skip=0} !skip{print}" pnpm-workspace.yaml > /tmp/pw.tmp && mv /tmp/pw.tmp pnpm-workspace.yaml || true',
