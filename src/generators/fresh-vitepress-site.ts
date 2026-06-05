@@ -7,7 +7,9 @@ export default defineGenerator({
     await t.waitForText('$')
     await t.send('corepack use pnpm@latest')
     await t.waitForText('$')
-    await t.send('pnpm add -D vitepress vue || (pnpm approve-builds --all && pnpm add -D vitepress vue)')
+    await t.send(
+      'pnpm add -D vitepress vue || (pnpm approve-builds --all && pnpm add -D vitepress vue)',
+    )
     await t.waitForText('$')
     await t.send('pnpm vitepress init')
     await t.waitForText('Where')
