@@ -4,8 +4,7 @@ export default defineGenerator({
   command: [
     'pnpm create turbo fresh-app --package-manager pnpm --skip-install',
     'cd fresh-app',
-    'setup-pnpm-builds',
-    'corepack use pnpm@latest',
+    'corepack use pnpm@latest || (pnpm approve-builds --all && corepack use pnpm@latest)',
     'pnpm build',
   ].join('\n'),
   displayedCommand: 'pnpm create turbo --package-manager pnpm',

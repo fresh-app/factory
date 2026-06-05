@@ -6,8 +6,6 @@ RUN corepack install --global pnpm@latest
 ENV PNPM_HOME="/pnpm-bin"
 ENV PATH="/pnpm-bin/bin:${PATH}"
 RUN mkdir /pnpm-bin && chown node:node /pnpm-bin
-COPY setup-pnpm-builds /usr/local/bin/setup-pnpm-builds
-RUN chmod +x /usr/local/bin/setup-pnpm-builds
 USER node
 WORKDIR /workspace
 RUN pnpm install --global http-server

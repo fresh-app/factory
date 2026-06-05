@@ -5,8 +5,7 @@ export default defineGenerator({
   command: [
     'pnpm create t3-app fresh-app --default --noGit --noInstall',
     'cd fresh-app',
-    'setup-pnpm-builds @prisma/client prisma @prisma/engines',
-    'corepack use pnpm@latest',
+    'corepack use pnpm@latest || (pnpm approve-builds --all && corepack use pnpm@latest)',
     'pnpm db:push',
   ].join('\n'),
   displayedCommand: 'pnpm create t3-app --default',

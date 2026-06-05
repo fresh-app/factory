@@ -4,8 +4,7 @@ export default defineGenerator({
   command: [
     'pnpm create astro fresh-app --template basics --no-install --no-git --skip-houston --typescript=strict',
     'cd fresh-app',
-    'setup-pnpm-builds',
-    'corepack use pnpm@latest',
+    'corepack use pnpm@latest || (pnpm approve-builds --all && corepack use pnpm@latest)',
     'pnpm build',
   ].join('\n'),
   displayedCommand: 'pnpm create astro --template basics',
