@@ -50,7 +50,9 @@ export class UploadResultAction extends CommandLineAction {
           return
         } catch (e: any) {
           if (e.status === 422 && attempt < 2) {
-            console.log(`=> ${path} SHA conflict, retrying (attempt ${attempt + 1})`)
+            console.log(
+              `=> ${path} SHA conflict, retrying (attempt ${attempt + 1})`,
+            )
             await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)))
             continue
           }
