@@ -14,6 +14,7 @@ export default defineGenerator({
     'mv yeoman_temp/fresh-extension fresh-app',
     'rm -rf yeoman_temp',
     'test -f fresh-app/package.json',
+    'fresh-app/node_modules/.bin/playwright install chromium',
   ].join('\n'),
   displayedCommand: 'yo code --extensionType=web',
   description: 'Fresh VS Code web extension',
