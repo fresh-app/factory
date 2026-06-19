@@ -11,7 +11,8 @@ export default defineGenerator({
   displayedCommand:
     'pnpm create react-router --template remix-run/react-router-templates/default',
   description: 'Fresh React Router SPA app',
-  longDescription: 'Fresh React Router Single Page Application (SPA) app (Remix successor)',
+  longDescription:
+    'Fresh React Router Single Page Application (SPA) app (Remix successor)',
   frameworkUrl: 'https://reactrouter.com/',
   frameworkDocumentationUrl: 'https://reactrouter.com/how-to/spa',
   staticOutputDirectory: 'build/client',
