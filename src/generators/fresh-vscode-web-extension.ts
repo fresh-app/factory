@@ -8,7 +8,7 @@ export default defineGenerator({
     'pnpm init',
     'jq "del(.devEngines)" package.json > package.json.tmp && mv package.json.tmp package.json',
     'pnpm add yo generator-code || (pnpm approve-builds --all && pnpm add yo generator-code)',
-    'pnpm install --global @vscode/test-web',
+    'pnpm add --global --allow-build=@playwright/browser-chromium @vscode/test-web',
     'pnpm exec yo code --quick --extensionType=web --gitInit=false fresh-extension',
     'cd ..',
     'mv yeoman_temp/fresh-extension fresh-app',
