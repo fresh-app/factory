@@ -29,11 +29,13 @@ export class UploadResultAction extends CommandLineAction {
       }
       const maxAttempts = 3
       for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-        const oldSha = await octokit.rest.repos
-          .getContent({ ...ptr })
-          .then((res) => ('sha' in res.data ? res.data.sha : undefined))
-          .catch((e: any) => (e.status === 404 ? undefined : Promise.reject(e)))
         try {
+          const oldSha = await octokit.rest.repos
+            .getContent({ ...ptr })
+            .then((res) => ('sha' in res.data ? res.data.sha : undefined))
+            .catch((e: any) =>
+              e.status === 404 ? undefined : Promise.reject(e),
+            )
           await octokit.rest.repos.createOrUpdateFileContents({
             ...ptr,
             ...(oldSha ? { sha: oldSha } : null),
@@ -50,9 +52,11 @@ export class UploadResultAction extends CommandLineAction {
           })
           return
         } catch (e: any) {
-          if ((e.status === 409 || e.status === 422) && attempt < maxAttempts) {
+          if (attempt < maxAttempts) {
             console.log(
-              `=> ${path} SHA conflict, retrying (attempt ${attempt})`,
+              `=> ${path} upload failed (${
+                e.status ?? e.message
+              }), retrying (attempt ${attempt})`,
             )
             await new Promise((r) => setTimeout(r, 1000 * attempt))
             continue
