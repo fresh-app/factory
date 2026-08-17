@@ -7,6 +7,7 @@ export default defineGenerator({
     'vp create vite:library --directory fresh-app --no-interactive',
     'cd fresh-app',
     'vp install',
+    'pnpm add -D @typescript/native-preview',
     'vp pack',
   ].join('\n'),
   displayedCommand: 'vp create vite:library',

@@ -1,5 +1,4 @@
 import { CommandLineAction } from '@rushstack/ts-command-line'
-import { createHash } from 'crypto'
 import { existsSync, readFileSync } from 'fs'
 import { Octokit } from 'octokit'
 
@@ -23,34 +22,48 @@ export class UploadResultAction extends CommandLineAction {
       contents: Buffer,
       message: string,
     ) => {
-      const newSha = createHash('sha1').update(contents).digest('hex')
       const ptr = {
         owner: 'fresh-app',
         repo: 'results',
         path,
       }
-      const oldSha = await octokit.rest.repos
-        .getContent({ ...ptr })
-        .then((res) => ('sha' in res.data ? res.data.sha : undefined))
-        .catch((e: any) => (e.status === 404 ? undefined : Promise.reject(e)))
-      if (oldSha === newSha) {
-        console.log(`=> ${path} is up to date`)
-        return
+      const maxAttempts = 3
+      for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+        try {
+          const oldSha = await octokit.rest.repos
+            .getContent({ ...ptr })
+            .then((res) => ('sha' in res.data ? res.data.sha : undefined))
+            .catch((e: any) =>
+              e.status === 404 ? undefined : Promise.reject(e),
+            )
+          await octokit.rest.repos.createOrUpdateFileContents({
+            ...ptr,
+            ...(oldSha ? { sha: oldSha } : null),
+            message,
+            content: contents.toString('base64'),
+            author: {
+              name: 'dtinth-bot',
+              email: 'dtinth-bot@users.noreply.github.com',
+            },
+            committer: {
+              name: 'dtinth-bot',
+              email: 'dtinth-bot@users.noreply.github.com',
+            },
+          })
+          return
+        } catch (e: any) {
+          if (attempt < maxAttempts) {
+            console.log(
+              `=> ${path} upload failed (${
+                e.status ?? e.message
+              }), retrying (attempt ${attempt})`,
+            )
+            await new Promise((r) => setTimeout(r, 1000 * attempt))
+            continue
+          }
+          throw e
+        }
       }
-      await octokit.rest.repos.createOrUpdateFileContents({
-        ...ptr,
-        ...(oldSha ? { sha: oldSha } : null),
-        message,
-        content: contents.toString('base64'),
-        author: {
-          name: 'dtinth-bot',
-          email: 'dtinth-bot@users.noreply.github.com',
-        },
-        committer: {
-          name: 'dtinth-bot',
-          email: 'dtinth-bot@users.noreply.github.com',
-        },
-      })
     }
     await updateFile(
       result.generator + '.json',
