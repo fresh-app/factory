@@ -15,10 +15,8 @@ export default defineGenerator({
     await t.send('pnpm install')
     await t.waitForText('$')
     await t.send(
-      'pnpm dlx sv add eslint playwright prettier vitest --no-install',
+      'pnpm dlx sv add eslint playwright="demo:yes" prettier vitest="usages:unit,component" --no-install',
     )
-    await t.waitForText('What')
-    await t.send('n')
     await t.waitForText('$')
     await t.send('pnpm install')
     await t.waitForText('$')
